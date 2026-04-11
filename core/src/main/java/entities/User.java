@@ -1,8 +1,11 @@
 package entities;
 
+import java.util.UUID;
+
 public class User {
-	public String Id; //{PA}{_______}7
+	public UUID Id;
+	public String AccountId; //{PA}{_______}7
 	public String Name;
 	public String Lastname;
-
+	public String PasswordHash;
 }

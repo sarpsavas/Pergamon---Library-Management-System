@@ -1,6 +1,7 @@
 package enums;
 
-public enum AccountStatus {
+public enum VisitorStatus {
 	Blocked,
 	Active
 }
+

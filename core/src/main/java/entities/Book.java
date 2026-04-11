@@ -1,6 +1,6 @@
 package entities;
 
-
+import java.time.LocalDate;
 import enums.BookType;
 import enums.Availability;
 
@@ -12,6 +12,8 @@ public class Book {
 	public Availability Availability;
 	public int PageNumber;
 	public String Location;
+	public LocalDate BarrStartTime;
+	public LocalDate BarrEndTime;
 	
 
 }
