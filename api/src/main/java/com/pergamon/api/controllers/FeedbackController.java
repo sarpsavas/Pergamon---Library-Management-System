@@ -1,4 +1,4 @@
-package controllers;
+package com.pergamon.api.controllers;
 
 public class FeedbackController {
 	//TODO: send

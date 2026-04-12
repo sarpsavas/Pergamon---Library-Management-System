@@ -1,4 +1,4 @@
-package controllers;
+package com.pergamon.api.controllers;
 
 
 import org.springframework.http.ResponseEntity;

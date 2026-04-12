@@ -8,7 +8,7 @@ public class PergamonApplication {
 	
 	public static void main(String[] args) {
 		
-		SpringApplication.run(PergemonApplication.class, args);
+		SpringApplication.run(PergamonApplication.class, args);
 		
 	}
 
