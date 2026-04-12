@@ -9,3 +9,4 @@ public class User {
 	public String Lastname;
 	public String PasswordHash;
 }
+
