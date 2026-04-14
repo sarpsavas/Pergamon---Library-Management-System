@@ -1,6 +1,8 @@
 package entities;
 
 import java.time.LocalDate;
+
+import ValueObjects.BookId;
 import enums.BookType;
 import enums.Availability;
 
@@ -15,5 +17,9 @@ public class Book {
 	public LocalDate BarrStartTime;
 	public LocalDate BarrEndTime;
 	
-
+	public Book()
+	{
+		BookId bookId = new BookId();
+		Id = bookId.GetBookId();
+	}
 }
