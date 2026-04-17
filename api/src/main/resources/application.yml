@@ -1,0 +1,11 @@
+spring:
+  datasource:
+    url: jdbc:sqlite::resource:pergamon.db
+    driver-class-name: org.sqlite.JDBC
+
+server:
+  port: 8080
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
