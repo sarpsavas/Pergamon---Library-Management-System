@@ -1,7 +1,9 @@
 spring:
   datasource:
-    url: jdbc:sqlite::resource:pergamon.db
-    driver-class-name: org.sqlite.JDBC
+    url: jdbc:oracle:thin:@localhost:1521:ORCL
+    username: pergamon
+    password: pergamon
+    driver-class-name: oracle.jdbc.OracleDriver
 
 server:
   port: 8080

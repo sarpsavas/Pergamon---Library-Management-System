@@ -13,7 +13,6 @@ public class Book {
 	public BookType BookType;
 	public Availability Availability;
 	public int PageNumber;
-	public String Location;
 	public LocalDate BarrStartTime;
 	public LocalDate BarrEndTime;
 	
