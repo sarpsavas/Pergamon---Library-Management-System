@@ -1,8 +1,8 @@
 spring:
   datasource:
     url: jdbc:oracle:thin:@localhost:1521:ORCL
-    username: pergamon
-    password: pergamon
+    username: system
+    password: 1234
     driver-class-name: oracle.jdbc.OracleDriver
 
 server:
@@ -11,3 +11,7 @@ server:
 springdoc:
   swagger-ui:
     path: /swagger-ui.html
+
+axon:
+  axonserver:
+    enabled: false

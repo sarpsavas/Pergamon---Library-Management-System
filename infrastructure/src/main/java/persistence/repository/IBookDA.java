@@ -16,7 +16,8 @@ public interface IBookDA {
 	List<Book> GetAll();
 	
 	//TODO: Add
-	@SqlUpdate("")
+	@SqlUpdate("INSERT INTO Books (Id, Name, Author, BookType, Availability,Pages) \r\n"
+			+ "VALUES ('PL9284668', 'Kendime Düşünceler', 'Marcus Aurelius', 3, 1, 245);")
 	void Add(@BindBean Book book);
 	
 	//TODO: Update

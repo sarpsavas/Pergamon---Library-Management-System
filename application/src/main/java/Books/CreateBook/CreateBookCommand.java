@@ -10,6 +10,4 @@ String Name,
 String Author,
  BookType BookType,
  Availability Availability,
- int PageNumber,
- LocalDate BarrStartTime,
- LocalDate BarrEndTime) {}
+ int PageNumber) {}

@@ -1,6 +1,7 @@
 package persistance.adapter;
 
 import entities.Book;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -22,12 +23,13 @@ public class BookRepositoryImpl implements IBookRepository, IRepository<Book>{
 	
 	public List<Book> GetBooksByLetters(String letters)
 	{
-		return _jdbi.withExtension(IBookDA.class, da -> da.GetAll().stream().map(this::toDomain).collect(Collectors.toList()));
+		return null; 
 	}
 	
 	public void Add(Book book)
 	{
-		
+		_jdbi.useExtension(IBookDA.class, da -> {da.Add(null);
+		});
 	}
 	
 	public void Update(Book book)
