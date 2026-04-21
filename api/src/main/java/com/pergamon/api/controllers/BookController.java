@@ -6,11 +6,10 @@ import org.axonframework.queryhandling.QueryGateway;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import Books.CreateBook.CreateBookCommand;
-
 import java.util.List;
 import DTOs.Requests.*;
 import DTOs.Responses.*;
+import com.pergamon.application.book.create_book;;
 
 
 
@@ -71,7 +70,9 @@ public class BookController {
 	{
 		try {
 			return ResponseEntity.ok("tamamlandı");
-		} catch (Exception e) {
+		} 
+		catch (Exception e) {
+			String a = e.getMessage();
 			return ResponseEntity.status(400).build();
 		}
 	}
