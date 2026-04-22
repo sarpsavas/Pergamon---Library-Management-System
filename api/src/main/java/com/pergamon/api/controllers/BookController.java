@@ -52,7 +52,7 @@ public class BookController {
 	
 	
 	@PostMapping("/book-add") //admin
-	public ResponseEntity<String> BookAdd(@RequestBody CreateBookCommand request) 
+	public ResponseEntity<String> BookAdd(@RequestBody CreateBookCommand request) //yeni
 	{
 		try {
 			_cGateway.sendAndWait(request);
