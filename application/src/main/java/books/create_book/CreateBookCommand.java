@@ -1,4 +1,4 @@
-package com.pergamon.application.book.create_book;
+package books.create_book;
 
 import java.time.LocalDate;
 

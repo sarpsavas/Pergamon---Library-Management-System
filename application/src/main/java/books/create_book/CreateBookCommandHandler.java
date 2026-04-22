@@ -1,9 +1,10 @@
-package com.pergamon.application.book.create_book;
+package books.create_book;
 
 import org.axonframework.commandhandling.CommandHandler;
 import org.springframework.stereotype.Component;
 
-import com.pergamon.core.interfaces.IRepository;
+
+import interfaces.IRepository;
 
 @Component
 public class CreateBookCommandHandler {

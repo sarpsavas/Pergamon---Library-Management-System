@@ -9,7 +9,10 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import DTOs.Requests.*;
 import DTOs.Responses.*;
-import com.pergamon.application.book.create_book;;
+//import config.CreateBookCommand;
+import books.create_book.CreateBookCommand;
+
+
 
 
 
@@ -52,12 +55,13 @@ public class BookController {
 	
 	
 	@PostMapping("/book-add") //admin
-	public ResponseEntity<String> BookAdd(@RequestBody CreateBookCommand request) //yeni
+	public ResponseEntity<String> BookAdd(@RequestBody CreateBookCommand request) 
 	{
 		try {
 			_cGateway.sendAndWait(request);
 			return ResponseEntity.ok("tamamlandı");
-		} catch (Exception e) {
+		} 
+		catch (Exception e) {
 			return ResponseEntity.status(400).build();
 		}
 	}
