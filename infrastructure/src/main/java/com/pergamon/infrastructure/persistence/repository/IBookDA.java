@@ -1,7 +1,8 @@
 package com.pergamon.infrastructure.persistence.repository;
 
-import java.awt.print.Book;
+import com.pergamon.core.entites.*;
 import java.util.List;
+import java.util.Optional;
 
 import org.jdbi.v3.sqlobject.config.RegisterBeanMapper;
 import org.jdbi.v3.sqlobject.customizer.BindBean;
@@ -15,9 +16,11 @@ public interface IBookDA {
 	@SqlQuery("")
 	List<Book> GetAll();
 	
+	@SqlQuery("SELECT * FROM Books WHERE :Id = Id;")
+	Book GetBookByBookId(@Bind("Id") String Id);
 	//TODO: Add
 	@SqlUpdate("INSERT INTO Books (Id, Name, Author, BookType, Availability,Pages) \r\n"
-			+ "VALUES ('PL9284668', 'Kendime Düşünceler', 'Marcus Aurelius', 3, 1, 245);")
+			+ "VALUES (:Id, :Name, :Author, 1, 1, :PageNumber);")
 	void Add(@BindBean Book book);
 	
 	//TODO: Update

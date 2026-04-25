@@ -7,6 +7,7 @@ import com.pergamon.core.entites.Book;
 public interface IBookRepository {
 	List<Book> GetBooksByLetters(String letters);
 	
+	Book GetBookByBookId(String bookId);
 	
 	
 	

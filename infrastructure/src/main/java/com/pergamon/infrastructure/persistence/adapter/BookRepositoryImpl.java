@@ -29,9 +29,14 @@ public class BookRepositoryImpl implements IBookRepository, IRepository<Book>{
 		return null; 
 	}
 	
+	public Book GetBookByBookId(String bookId)
+	{
+		return _jdbi.withExtension(IBookDA.class, da -> da.GetBookByBookId(bookId));
+	}
+	
 	public void Add(Book book)
 	{
-		_jdbi.useExtension(IBookDA.class, da -> {da.Add(null);
+		_jdbi.useExtension(IBookDA.class, da -> {da.Add(book);
 		});
 	}
 	
