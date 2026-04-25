@@ -7,10 +7,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import com.pergamon.application.command.book.CreateBookCommand;
+
 import java.util.List;
 import DTOs.Requests.*;
 import DTOs.Responses.*;
-import command.book.CreateBookCommand;
 
 
 
@@ -59,12 +60,12 @@ public class BookController {
 	{
 		try {
 			_cGateway.sendAndWait(request);
-			return ResponseEntity.ok("tamamlandı");
+			return ResponseEntity.ok("success");
 		} 
 		catch (Exception e) {
 			return ResponseEntity
 	                .status(HttpStatus.INTERNAL_SERVER_ERROR)
-	                .body("Hata oluştu: " + e.getMessage());
+	                .body("Error : " + e.getMessage());
 		}
 	}
 	
