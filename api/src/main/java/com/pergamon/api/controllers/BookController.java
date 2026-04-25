@@ -3,14 +3,14 @@ package com.pergamon.api.controllers;
 
 import org.axonframework.commandhandling.gateway.CommandGateway;
 import org.axonframework.queryhandling.QueryGateway;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import DTOs.Requests.*;
 import DTOs.Responses.*;
-//import config.CreateBookCommand;
-import books.create_book.CreateBookCommand;
+import command.book.CreateBookCommand;
 
 
 
@@ -62,7 +62,9 @@ public class BookController {
 			return ResponseEntity.ok("tamamlandı");
 		} 
 		catch (Exception e) {
-			return ResponseEntity.status(400).build();
+			return ResponseEntity
+	                .status(HttpStatus.INTERNAL_SERVER_ERROR)
+	                .body("Hata oluştu: " + e.getMessage());
 		}
 	}
 	

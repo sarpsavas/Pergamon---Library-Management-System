@@ -1,7 +1,7 @@
 package entities;
 
 
-import ValueObjects.VisitorId;
+import ValueObjects.VisitorIdObject;
 import enums.*;
 
 public class Visitor extends User{
@@ -14,7 +14,7 @@ public class Visitor extends User{
 		Status = status;
 		Profil = profil;
 		Book = 0;
-		VisitorId visitorId = new VisitorId(Profil);
+		VisitorIdObject visitorId = new VisitorIdObject(Profil);
 		AccountId = visitorId.GetVisitorId();
 	}
 	public void AddBook(int bookNumber) throws Exception

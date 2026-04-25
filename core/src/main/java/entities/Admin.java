@@ -1,14 +1,16 @@
 package entities;
 
-import ValueObjects.AdminId;
+
+import ValueObjects.AdminIdObject;
 import enums.*;
 
 public class Admin extends User{
 	public AdminStatus Status;
+	public String AdminId;
 	
 	public Admin()
 	{
-		AdminId adminId = new AdminId();
-		AccountId = adminId.GetAdminId();
+		AdminIdObject adminId = new AdminIdObject();
+		AdminId = adminId.GetAdminId();
 	}
 }

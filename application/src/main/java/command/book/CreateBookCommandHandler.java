@@ -1,4 +1,4 @@
-package books.create_book;
+package command.book;
 
 import org.axonframework.commandhandling.CommandHandler;
 import org.springframework.stereotype.Component;

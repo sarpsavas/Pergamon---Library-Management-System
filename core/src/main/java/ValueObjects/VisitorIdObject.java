@@ -4,10 +4,10 @@ import java.util.Random;
 
 import enums.AccountProfil;
 
-public class VisitorId {
+public class VisitorIdObject {
 	String VisitorId;
 	
-	public VisitorId(AccountProfil profil)
+	public VisitorIdObject(AccountProfil profil)
 	{
 		Random rnd = new Random();
 		if(profil == AccountProfil.Teacher)

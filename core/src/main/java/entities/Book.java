@@ -2,7 +2,7 @@ package entities;
 
 import java.time.LocalDate;
 
-import ValueObjects.BookId;
+import ValueObjects.BookIdObject;
 import enums.BookType;
 import enums.Availability;
 
@@ -17,7 +17,7 @@ public class Book {
 	
 	public Book()
 	{
-		BookId bookId = new BookId();
+		BookIdObject bookId = new BookIdObject();
 		Id = bookId.GetBookId();
 	}
 }

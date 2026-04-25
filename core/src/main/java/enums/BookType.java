@@ -1,7 +1,7 @@
 package enums;
 
 public enum BookType {
-	Novel,
+	NOVEL,
 	Story,
 	Classic,
 	Crime,

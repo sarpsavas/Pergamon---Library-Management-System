@@ -2,10 +2,10 @@ package ValueObjects;
 
 import java.util.Random;
 
-public class BookId {
+public class BookIdObject {
 	String BookId;
 	
-	public BookId() {
+	public BookIdObject() {
 		Random rnd = new Random();
 		BookId ="PL"  + rnd.nextInt(8999999) + 1000000;
 	}
