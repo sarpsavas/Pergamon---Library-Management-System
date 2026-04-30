@@ -5,8 +5,14 @@ import java.util.UUID;
 
 public class Feedback {
 	
-	UUID FeedbackId;
-	String FeedbackText;
-	LocalTime FBTime;
+	UUID feedbackId;
+	String feedbackText;
+	LocalTime feedbackTime;
 	
+	public Feedback(String feedbackText)
+	{
+		this.feedbackId = UUID.randomUUID();
+		this.feedbackText = feedbackText;
+		this.feedbackTime = LocalTime.now();
+	}
 }

@@ -1,65 +1,62 @@
 package com.pergamon.core.entites;
 
 
-import com.pergamon.core.enums.AccountProfil;
+import java.util.Random;
+import java.util.UUID;
+
+import com.pergamon.core.enums.AccountProfile;
 import com.pergamon.core.enums.VisitorStatus;
-import com.pergamon.core.value_objects.VisitorIdObject;
+
 
 
 public class Visitor extends User{
-	public VisitorStatus Status;
-	public AccountProfil Profil;
-	protected int Book;
+	public VisitorStatus status;
+	public AccountProfile profil;
 	
-	public Visitor(VisitorStatus status,  AccountProfil profil)
+	
+	public Visitor( AccountProfile profil)
 	{
-		Status = status;
-		Profil = profil;
-		Book = 0;
-		VisitorIdObject visitorId = new VisitorIdObject(Profil);
-		AccountId = visitorId.GetVisitorId();
-	}
-	public void AddBook(int bookNumber) throws Exception
-	{
-		if(Profil == AccountProfil.Student)
+		Random rnd = new Random();
+		if(profil == AccountProfile.TEACHER)
 		{
-			if((Book + bookNumber) <= 5)
-			{
-				Book += bookNumber;
-			}
-			else
-			{
-				throw new Exception("Maksimum kitap sayısı");
-			}
-		}
-		else if(Profil == AccountProfil.Teacher)
-		{
-			if((Book + bookNumber) <= 5)
-			{
-				Book += bookNumber;
-			}
-			else
-			{
-				throw new Exception("Maksimum kitap sayısı");
-			}
-		}
-		
-		
-	}
-	public void ExtractBook(int bookNumber) throws Exception
-	{
-		if((Book - bookNumber) >= 0)
-		{
-			Book -= bookNumber;
+			accountId = "PT" + rnd.nextInt(8999999) + 1000000;
 		}
 		else
 		{
-			throw new Exception("Çıkarılacak kitap kalmadı");
+			accountId = "PS" + rnd.nextInt(8999999) + 1000000;
 		}
 		
+		id = UUID.randomUUID();
+		
+		
 	}
-	public int GetBook()
+	
+	public void setName(String name)
 	{
-		return Book;
+		if(name.length() >30 || name.length() <= 0)
+		{
+			throw new IllegalArgumentException("visitor name length error");
+		}
+		this.name = name;
 	}
+	
+	public String getName()
+	{
+		return name;
+	}
+	
+	public void setLastname(String lastname)
+	{
+		if(lastname.length() >30 || lastname.length() <= 0)
+		{
+			throw new IllegalArgumentException("visitor name length error");
+		}
+		this.lastname = lastname;
+	}
+	
+	public String getLastname()
+	{
+		return lastname;
+	}
+	
 }

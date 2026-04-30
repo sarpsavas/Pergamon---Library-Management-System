@@ -4,6 +4,7 @@ import org.axonframework.commandhandling.CommandHandler;
 import org.springframework.stereotype.Component;
 
 import com.pergamon.core.entites.Book;
+
 import com.pergamon.core.interfaces.IRepository;
 
 @Component
@@ -21,8 +22,10 @@ public class CreateBookCommandHandler {
 	public void Handle(CreateBookCommand request)
 	{
 		Book book = new Book();
-		book.Name = request.name();
+		book.name = request.name();
 		
 		_repository.Add(book);
+		
+		
 	}
 }

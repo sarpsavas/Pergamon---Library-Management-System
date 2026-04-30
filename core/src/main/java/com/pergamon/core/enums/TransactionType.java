@@ -1,20 +1,20 @@
 package com.pergamon.core.enums;
 
 public enum TransactionType {
-	CreateAdmin,//0
-	UpdateAdmin,//1
-	DeleteAdmin,//2
-	CreateVisitor,//3
-	UpdateVisitor,//4
-	DeleteVisitor,//5
-	TimeRequest,//6
-	SendFeedBack,//7
-	AddBarrowed,//8
-	TakeBarrowed,//9
-	Donation,//10
-	AddBook,//11
-	UpdateBook,//12
-	DeleteBook,//13
+	CREATE_ADMIN,//0
+	UPDATE_ADMIN,//1
+	DELETE_ADMIN,//2
+	CREATE_VISITOR,//3
+	UPDATE_VISITOR,//4
+	DELETE_VISITOR,//5
+	TIME_REQUEST,//6
+	SEND_FEEDBACK,//7
+	ADD_BARROWED,//8
+	TAKE_BARROWED,//9
+	DONATION,//10
+	ADD_BOOK,//11
+	UPDATE_BOOK,//12
+	DELETE_BOOK,//13
 	
 	
 	

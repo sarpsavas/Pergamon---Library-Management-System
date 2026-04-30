@@ -3,6 +3,7 @@ package com.pergamon.infrastructure.persistence.repository;
 import com.pergamon.core.entites.*;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 import org.jdbi.v3.sqlobject.config.RegisterBeanMapper;
 import org.jdbi.v3.sqlobject.customizer.BindBean;
@@ -15,6 +16,9 @@ public interface IBookDA {
 	//TODO: search all
 	@SqlQuery("")
 	List<Book> GetAll();
+	
+	@SqlQuery("")
+	List<Book> GetBookByLetters(@Bind("letters") String letters);
 	
 	@SqlQuery("SELECT * FROM Books WHERE :Id = Id;")
 	Book GetBookByBookId(@Bind("Id") String Id);
@@ -29,7 +33,7 @@ public interface IBookDA {
 	
 	//TODO: Delete
 	@SqlUpdate("")
-	void Delete(@Bind("Id") String Id );
+	void Delete(@Bind("Id") UUID Id );
 	
 
 }

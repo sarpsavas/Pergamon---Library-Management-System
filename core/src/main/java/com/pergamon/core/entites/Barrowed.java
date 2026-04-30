@@ -5,9 +5,16 @@ import java.time.LocalDateTime;
 import java.util.UUID;
 
 public class Barrowed {
-	public UUID BarrowedId;
-	public String BookId;
-	public UUID VisitorId;
-	public LocalDateTime BarrStartTime;
-	public LocalDateTime BarrEndTime;
+	public UUID barrowedId;
+	public String bookId;
+	public UUID visitorId;
+	public LocalDateTime barrStartTime;
+	public LocalDateTime barrEndTime;
+	
+	public Barrowed()
+	{
+		barrowedId = UUID.randomUUID();
+		barrStartTime = LocalDateTime.now();
+		barrEndTime = barrStartTime.plusDays(14);
+	}
 }

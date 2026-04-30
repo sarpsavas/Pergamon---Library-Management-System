@@ -1,12 +1,12 @@
 package com.pergamon.infrastructure.persistence.adapter;
 
 import java.util.List;
-import java.util.stream.Collectors;
+import java.util.UUID;
 
 import org.jdbi.v3.core.Jdbi;
 
 
-import org.jdbi.v3.core.Jdbi;
+
 import org.springframework.stereotype.Repository;
 
 import com.pergamon.core.entites.Book;
@@ -26,7 +26,7 @@ public class BookRepositoryImpl implements IBookRepository, IRepository<Book>{
 	
 	public List<Book> GetBooksByLetters(String letters)
 	{
-		return null; 
+		return _jdbi.withExtension(IBookDA.class, da -> da.GetBookByLetters(letters));
 	}
 	
 	public Book GetBookByBookId(String bookId)
@@ -42,12 +42,14 @@ public class BookRepositoryImpl implements IBookRepository, IRepository<Book>{
 	
 	public void Update(Book book)
 	{
-		
+		_jdbi.useExtension(IBookDA.class, da -> {da.Update(book);
+		});
 	}
 	
-	public void Delete(Book book)
+	public void Delete(UUID id)
 	{
-		
+		_jdbi.useExtension(IBookDA.class, da -> {da.Delete(id);
+		});
 	}
 	
 }
