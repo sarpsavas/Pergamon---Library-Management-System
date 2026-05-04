@@ -46,6 +46,6 @@ public class VisitorRepositoryImpl implements IVisitorRepository, IRepository<Vi
 	
 	public void Delete(UUID id)
 	{
-		_jdbi.useExtension(IVisitorDA.class, da -> {da.Delete(id);});
+		_jdbi.useExtension(IVisitorDA.class, da -> da.Delete(id));
 	}
 }

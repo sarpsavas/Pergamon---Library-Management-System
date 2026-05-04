@@ -1,8 +1,5 @@
 package com.pergamon.infrastructure.persistence.repository;
 
-
-
-import java.util.List;
 import java.util.UUID;
 
 import org.jdbi.v3.sqlobject.config.RegisterBeanMapper;
@@ -11,27 +8,24 @@ import org.jdbi.v3.sqlobject.customizer.BindBean;
 import org.jdbi.v3.sqlobject.statement.SqlQuery;
 import org.jdbi.v3.sqlobject.statement.SqlUpdate;
 
+import com.pergamon.core.entites.Organization;
 import com.pergamon.core.entites.Visitor;
 
-@RegisterBeanMapper(Visitor.class)
-public interface IVisitorDA {
-	
-	@SqlQuery("SELECT * FROM Visitors WHERE ")
-	List<Visitor> GetVisitorsByLetters(@Bind("letters") String letters);
+@RegisterBeanMapper(Organization.class)
+public interface IOrganizationsDA {
 	
 	@SqlQuery("")
-	Visitor GetVisitorById(@Bind("id")UUID id);
+	Organization getOrganizationByOrganizationId(@Bind("id")  UUID organizationId);
 	
 	@SqlQuery("")
-	Visitor GetVisitorByIdentity(@Bind("eMail") String eMail,@Bind("passwordHash") String passwordHash);
+	Organization getOrganizationByOrganizationPerId(@Bind("id")  String organizationperId);
 	
 	@SqlUpdate("")
-	void Add(@BindBean Visitor visitor);
+	void Add(@BindBean Organization visitor);
 	
 	@SqlUpdate("")
-	void Update(@BindBean Visitor visitor);
+	void Update(@BindBean Organization visitor);
 	
 	@SqlUpdate("")
 	void Delete(@Bind("id") UUID id);
-	
 }
