@@ -3,6 +3,7 @@ package com.pergmaon.application.users.visitor_sign_up;
 import org.axonframework.commandhandling.CommandHandler;
 import org.springframework.stereotype.Component;
 
+import com.pergamon.application.helpers.HashHelper;
 import com.pergamon.core.entites.Transaction;
 import com.pergamon.core.entites.Visitor;
 import com.pergamon.core.enums.AccountProfile;
@@ -15,15 +16,13 @@ import com.pergamon.core.interfaces.IVisitorRepository;
 public class VisitorSignUpCommandHandler {
 	private IRepository<Visitor> _repositoryVi;
 	private IRepository<Transaction> _repositoryTr;
-	private IVisitorRepository _visRepository;
+	
 	
 	public VisitorSignUpCommandHandler(IRepository<Visitor> repositoryVi,
-			IRepository<Transaction> repositoryTr,
-			IVisitorRepository visRepository)
+			IRepository<Transaction> repositoryTr)
 	{
 		_repositoryVi = repositoryVi;
 		_repositoryTr = repositoryTr;
-		_visRepository = visRepository;
 	}
 	@CommandHandler
 	public void  handle(VisitorSignUpCommand request)
@@ -35,10 +34,13 @@ public class VisitorSignUpCommandHandler {
 			visitor.SetEMail(request.eMail());
 			visitor.name = request.name();
 			visitor.lastname = request.lastName();
-			visitor.passwordHash 
+			HashHelper hasher = new HashHelper();
+			visitor.passwordHash = hasher.hashConverter(request.Password());
+			
+			_repositoryVi.add(visitor);
 			
 			transaction.succes = Succes.SUCCESSFUL;
-			
+			_repositoryTr.add(transaction);
 		} 
 		catch (Exception e) {
 			transaction.succes = Succes.UNSUCCESSFUL;

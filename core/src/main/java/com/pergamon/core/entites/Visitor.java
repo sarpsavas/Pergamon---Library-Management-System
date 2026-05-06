@@ -25,7 +25,7 @@ public class Visitor extends User{
 		{
 			accountId = "PS" + rnd.nextInt(8999999) + 1000000;
 		}
-		
+		this.status = VisitorStatus.ACTIVE;
 		id = UUID.randomUUID();
 		
 		
