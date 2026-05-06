@@ -26,12 +26,12 @@ public interface IVisitorDA {
 	Visitor GetVisitorByIdentity(@Bind("eMail") String eMail,@Bind("passwordHash") String passwordHash);
 	
 	@SqlUpdate("")
-	void Add(@BindBean Visitor visitor);
+	void add(@BindBean Visitor visitor);
 	
 	@SqlUpdate("")
-	void Update(@BindBean Visitor visitor);
+	void update(@BindBean Visitor visitor);
 	
 	@SqlUpdate("")
-	void Delete(@Bind("id") UUID id);
+	void delete(@Bind("id") UUID id);
 	
 }

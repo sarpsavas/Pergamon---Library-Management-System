@@ -14,11 +14,5 @@ public interface IOrganizationRepository {
 	Organization getOrganizationByOrganizationPerId(  String organizationperId);
 	
 	
-	void Add( Organization visitor);
 	
-	
-	void Update( Organization visitor);
-	
-	
-	void Delete( UUID id);
 }

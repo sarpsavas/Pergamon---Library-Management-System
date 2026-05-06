@@ -25,11 +25,11 @@ public interface IAdminDA {
 	Admin GetAdminByIdentity(@Bind("eMail") String eMail, @Bind("passwordHash") String passwordHash);
 	
 	@SqlUpdate("")
-	void Add(@BindBean Admin admin);
+	void add(@BindBean Admin admin);
 	
 	@SqlUpdate("")
-	void Update(@BindBean Admin admin);
+	void update(@BindBean Admin admin);
 	
 	@SqlUpdate("")
-	void Delete(@Bind("id") UUID id);
+	void delete(@Bind("id") UUID id);
 }

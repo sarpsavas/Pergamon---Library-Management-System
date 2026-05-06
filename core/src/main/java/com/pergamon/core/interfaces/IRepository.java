@@ -4,10 +4,10 @@ import java.util.UUID;
 
 public interface IRepository<T>  {
 	
-	void Add(T object);
+	void add(T object);
 	
-	void Update(T object);
+	void update(T object);
 	
-	void Delete(UUID object);
+	void delete(UUID object);
 	
 }

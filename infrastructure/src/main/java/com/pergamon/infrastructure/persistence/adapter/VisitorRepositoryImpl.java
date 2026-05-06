@@ -34,18 +34,18 @@ public class VisitorRepositoryImpl implements IVisitorRepository, IRepository<Vi
 		return _jdbi.withExtension(IVisitorDA.class, da -> da.GetVisitorByIdentity(eMail, passwordHash));
 	}
 	
-	public void Add(Visitor visitor)
+	public void add(Visitor visitor)
 	{
-		_jdbi.useExtension(IVisitorDA.class, da -> {da.Add(visitor);});
+		_jdbi.useExtension(IVisitorDA.class, da -> {da.add(visitor);});
 	}
 	
-	public void Update(Visitor visitor)
+	public void update(Visitor visitor)
 	{
-		_jdbi.useExtension(IVisitorDA.class, da -> {da.Update(visitor);});
+		_jdbi.useExtension(IVisitorDA.class, da -> {da.update(visitor);});
 	}
 	
-	public void Delete(UUID id)
+	public void delete(UUID id)
 	{
-		_jdbi.useExtension(IVisitorDA.class, da -> da.Delete(id));
+		_jdbi.useExtension(IVisitorDA.class, da -> da.delete(id));
 	}
 }

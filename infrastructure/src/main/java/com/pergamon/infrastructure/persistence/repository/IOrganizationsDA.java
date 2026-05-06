@@ -21,11 +21,11 @@ public interface IOrganizationsDA {
 	Organization getOrganizationByOrganizationPerId(@Bind("id")  String organizationperId);
 	
 	@SqlUpdate("")
-	void Add(@BindBean Organization visitor);
+	void add(@BindBean Organization visitor);
 	
 	@SqlUpdate("")
-	void Update(@BindBean Organization visitor);
+	void update(@BindBean Organization visitor);
 	
 	@SqlUpdate("")
-	void Delete(@Bind("id") UUID id);
+	void delete(@Bind("id") UUID id);
 }

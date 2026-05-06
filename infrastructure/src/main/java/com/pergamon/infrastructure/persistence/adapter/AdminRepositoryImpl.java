@@ -36,18 +36,18 @@ private final Jdbi _jdbi;
 		return _jdbi.withExtension(IAdminDA.class, da -> da.GetAdminByIdentity(eMail, passwordHash));
 	}
 	
-	public void Add(Admin admin)
+	public void add(Admin admin)
 	{
-		_jdbi.useExtension(IAdminDA.class, da -> {da.Add(admin);});
+		_jdbi.useExtension(IAdminDA.class, da -> {da.add(admin);});
 	}
 	
-	public void Update(Admin admin)
+	public void update(Admin admin)
 	{
-		_jdbi.useExtension(IAdminDA.class, da -> {da.Update(admin);});
+		_jdbi.useExtension(IAdminDA.class, da -> {da.update(admin);});
 	}
 	
-	public void Delete(UUID id)
+	public void delete(UUID id)
 	{
-		_jdbi.useExtension(IAdminDA.class, da -> {da.Delete(id);});
+		_jdbi.useExtension(IAdminDA.class, da -> {da.delete(id);});
 	}
 }

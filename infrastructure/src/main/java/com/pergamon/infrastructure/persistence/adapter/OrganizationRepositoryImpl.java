@@ -34,20 +34,20 @@ IRepository<Organization>
 	}
 	
 	
-	public void Add(Organization organization)
+	public void add(Organization organization)
 	{
-		_jdbi.useExtension(IOrganizationsDA.class, da -> da.Add(organization));
+		_jdbi.useExtension(IOrganizationsDA.class, da -> da.add(organization));
 	}
 	
 	
-	public void Update(Organization organization)
+	public void update(Organization organization)
 	{
-		_jdbi.useExtension(IOrganizationsDA.class, da -> da.Update(organization));
+		_jdbi.useExtension(IOrganizationsDA.class, da -> da.update(organization));
 	}
 	
 	
-	public void Delete(UUID id)
+	public void delete(UUID id)
 	{
-		_jdbi.useExtension(IOrganizationsDA.class, da -> da.Delete(id));
+		_jdbi.useExtension(IOrganizationsDA.class, da -> da.delete(id));
 	}
 }

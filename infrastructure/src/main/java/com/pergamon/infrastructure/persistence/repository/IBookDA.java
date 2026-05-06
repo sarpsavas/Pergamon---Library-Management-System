@@ -25,15 +25,15 @@ public interface IBookDA {
 	//TODO: Add
 	@SqlUpdate("INSERT INTO Books (Id, Name, Author, BookType, Availability,Pages) \r\n"
 			+ "VALUES (:Id, :Name, :Author, 1, 1, :PageNumber);")
-	void Add(@BindBean Book book);
+	void add(@BindBean Book book);
 	
 	//TODO: Update
 	@SqlUpdate("")
-	void Update(@BindBean Book book);
+	void update(@BindBean Book book);
 	
 	//TODO: Delete
 	@SqlUpdate("")
-	void Delete(@Bind("Id") UUID Id );
+	void delete(@Bind("Id") UUID Id );
 	
 
 }

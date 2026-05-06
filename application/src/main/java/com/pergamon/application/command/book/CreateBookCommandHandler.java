@@ -24,7 +24,7 @@ public class CreateBookCommandHandler {
 		Book book = new Book();
 		book.name = request.name();
 		
-		_repository.Add(book);
+		_repository.add(book);
 		
 		
 	}
