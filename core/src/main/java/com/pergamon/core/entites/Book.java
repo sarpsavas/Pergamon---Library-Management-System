@@ -1,6 +1,6 @@
 package com.pergamon.core.entites;
 
-import java.time.LocalDate;
+
 import java.util.Random;
 
 import com.pergamon.core.enums.Availability;
