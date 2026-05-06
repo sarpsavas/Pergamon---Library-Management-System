@@ -10,7 +10,13 @@ public class User {
 	public String name;
 	public String lastname;
 	public String passwordHash;
-	public EMail eMail;
+	private EMail eMail;
+	
+	public void SetEMail(String eMail)
+	{
+		this.eMail = new EMail(eMail);
+	}
+	
 	
 }
 

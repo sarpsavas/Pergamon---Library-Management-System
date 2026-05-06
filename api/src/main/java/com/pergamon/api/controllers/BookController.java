@@ -12,6 +12,9 @@ import com.pergamon.application.command.book.CreateBookCommand;
 import java.util.List;
 import DTOs.Requests.*;
 import DTOs.Responses.*;
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.security.Keys;
 
 
 
@@ -95,5 +98,22 @@ public class BookController {
 		}
 	}
 	
+	@PostMapping("/role-converter")
+	public ResponseEntity<String> RoleConverter(@RequestHeader("Authorization") String authHeader)
+	{
+		String token = authHeader.substring(7); 
+
+	    Claims claims = Jwts.parserBuilder()
+	            .setSigningKey(Keys.hmacShaKeyFor(
+	        	        "@bojevtsi@sliven@".getBytes()
+	            	    ))
+	            .build()
+	            .parseClaimsJws(token)
+	            .getBody();
+
+	    String role = claims.get("role", String.class);
+
+	    return ResponseEntity.ok("Role: " + role);
+	}
 	
 }
