@@ -21,33 +21,33 @@ private final Jdbi _jdbi;
 		_jdbi = jdbi;
 	}
 	
-	public List<Admin> GetAdminsByLetters(String letters)
+	public List<Admin> GetAdminsByLetters(String letters, String organizationPerId)
 	{
-		return _jdbi.withExtension(IAdminDA.class, da -> da.GetAdminsByLetters(letters));
+		return _jdbi.withExtension(IAdminDA.class, da -> da.GetAdminsByLetters(letters,organizationPerId));
 	}
 	
-	public Admin GetAdminById(UUID id)
+	public Admin GetAdminById(UUID id, String organizationPerId)
 	{
-		return _jdbi.withExtension(IAdminDA.class, da -> da.GetAdminById(id));
+		return _jdbi.withExtension(IAdminDA.class, da -> da.GetAdminById(id,organizationPerId));
 	}
 	
-	public Admin GetAdminByIdentity(String eMail, String passwordHash)
+	public Admin GetAdminByIdentity(String eMail, String passwordHash, String organizationPerId)
 	{
-		return _jdbi.withExtension(IAdminDA.class, da -> da.GetAdminByIdentity(eMail, passwordHash));
+		return _jdbi.withExtension(IAdminDA.class, da -> da.GetAdminByIdentity(eMail, passwordHash,organizationPerId));
 	}
 	
 	public void add(Admin admin)
 	{
-		_jdbi.useExtension(IAdminDA.class, da -> {da.add(admin);});
+		_jdbi.useExtension(IAdminDA.class, da -> {da.add(admin,admin.organizationPerId);});
 	}
 	
 	public void update(Admin admin)
 	{
-		_jdbi.useExtension(IAdminDA.class, da -> {da.update(admin);});
+		_jdbi.useExtension(IAdminDA.class, da -> {da.update(admin, admin.organizationPerId);});
 	}
 	
-	public void delete(UUID id)
+	public void delete(UUID id, String organizationPerId)
 	{
-		_jdbi.useExtension(IAdminDA.class, da -> {da.delete(id);});
+		_jdbi.useExtension(IAdminDA.class, da -> {da.delete(id, organizationPerId);});
 	}
 }

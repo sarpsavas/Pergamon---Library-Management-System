@@ -9,11 +9,11 @@ import com.pergamon.core.entites.Visitor;
 
 public interface IVisitorRepository {
 	
-	List<Visitor> GetVisitorsByLetters(String letters);
+	List<Visitor> GetVisitorsByLetters(String letters, String organizationPerId);
 	
-	Visitor GetVisitorById(UUID id);
+	Visitor GetVisitorById(UUID id, String organizationPerId);
 	
-	Visitor GetVisitorByIdentity( String eMail, String passwordHash);
+	Visitor GetVisitorByIdentity( String eMail, String passwordHash, String organizationPerId);
 	
 	
 }

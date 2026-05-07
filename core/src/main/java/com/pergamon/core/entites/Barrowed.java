@@ -8,6 +8,7 @@ public class Barrowed {
 	public UUID barrowedId;
 	public String bookId;
 	public UUID visitorId;
+	public String organizationPerId;
 	public LocalDateTime barrStartTime;
 	public LocalDateTime barrEndTime;
 	

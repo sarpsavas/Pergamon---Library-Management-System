@@ -24,31 +24,31 @@ public class BookRepositoryImpl implements IBookRepository, IRepository<Book>{
 		_jdbi = jdbi;
 	}
 	
-	public List<Book> GetBooksByLetters(String letters)
+	public List<Book> GetBooksByLetters(String letters, String organizationPerId)
 	{
-		return _jdbi.withExtension(IBookDA.class, da -> da.GetBookByLetters(letters));
+		return _jdbi.withExtension(IBookDA.class, da -> da.GetBookByLetters(letters, organizationPerId));
 	}
 	
-	public Book GetBookByBookId(String bookId)
+	public Book GetBookByBookId(String bookId, String organizationPerId)
 	{
-		return _jdbi.withExtension(IBookDA.class, da -> da.GetBookByBookId(bookId));
+		return _jdbi.withExtension(IBookDA.class, da -> da.GetBookByBookId(bookId, organizationPerId));
 	}
 	
 	public void add(Book book)
 	{
-		_jdbi.useExtension(IBookDA.class, da -> {da.add(book);
+		_jdbi.useExtension(IBookDA.class, da -> {da.add(book,book.organizationPerId);
 		});
 	}
 	
 	public void update(Book book)
 	{
-		_jdbi.useExtension(IBookDA.class, da -> {da.update(book);
+		_jdbi.useExtension(IBookDA.class, da -> {da.update(book,book.organizationPerId);
 		});
 	}
 	
-	public void delete(UUID id)
+	public void delete(UUID id, String organizationPerId)
 	{
-		_jdbi.useExtension(IBookDA.class, da -> {da.delete(id);
+		_jdbi.useExtension(IBookDA.class, da -> {da.delete(id,organizationPerId);
 		});
 	}
 	

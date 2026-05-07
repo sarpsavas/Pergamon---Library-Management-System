@@ -8,6 +8,6 @@ public interface IRepository<T>  {
 	
 	void update(T object);
 	
-	void delete(UUID object);
+	void delete(UUID object, String organizationPerId);
 	
 }

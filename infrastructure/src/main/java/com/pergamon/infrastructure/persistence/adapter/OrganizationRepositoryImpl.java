@@ -46,7 +46,7 @@ IRepository<Organization>
 	}
 	
 	
-	public void delete(UUID id)
+	public void delete(UUID id, String organizationPerId)
 	{
 		_jdbi.useExtension(IOrganizationsDA.class, da -> da.delete(id));
 	}

@@ -6,6 +6,6 @@ import com.pergamon.core.entites.Transaction;
 
 public interface ITransactionRepository {
 	
-	List<Transaction> GetUserTransactionsByUId(String unıqUserId);
-	List<Transaction> GetAllTransactions();
+	List<Transaction> GetUserTransactionsByUId(String unıqUserId, String organizationPerId);
+	List<Transaction> GetAllTransactions(String organizationPerId);
 }

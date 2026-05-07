@@ -14,7 +14,7 @@ public class Visitor extends User{
 	public AccountProfile profil;
 	
 	
-	public Visitor( AccountProfile profil)
+	public Visitor( AccountProfile profil,VisitorStatus status)
 	{
 		Random rnd = new Random();
 		if(profil == AccountProfile.TEACHER)
@@ -25,7 +25,7 @@ public class Visitor extends User{
 		{
 			accountId = "PS" + rnd.nextInt(8999999) + 1000000;
 		}
-		this.status = VisitorStatus.ACTIVE;
+		this.status = status;
 		id = UUID.randomUUID();
 		
 		

@@ -12,6 +12,7 @@ import com.pergamon.core.enums.TransactionType;
 
 public class Transaction {
 	public UUID transactionId;
+	public String organizationPerId;
 	public UUID userId;
 	public TransactionType type;
 	public LocalDateTime transactionTime;
@@ -22,7 +23,6 @@ public class Transaction {
 	{
 		transactionId = UUID.randomUUID();
 		transactionTime = LocalDateTime.now();
-		
 	}
 	
 	public void setDescription(String descriptionText)

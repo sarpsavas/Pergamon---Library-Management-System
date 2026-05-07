@@ -8,19 +8,19 @@ import com.pergamon.core.enums.BookType;
 
 
 public class Book {
-	public String id; // {PL}+{_______}7int
+	public String id; // {PB}+{0000000}
 	public String name;
 	public String author;
 	public BookType bookType;
 	public Availability availability;
 	private int pageNumber;
+	public String organizationPerId;
 	
 	
 	public Book()
 	{
 		Random rnd = new Random();
-		id ="PL"  + rnd.nextInt(8999999) + 1000000;
-		
+		id = "PB" + rnd.nextInt(8999999) + 1000000;
 		
 	}
 	public void setPageNumber(int pageNumber)

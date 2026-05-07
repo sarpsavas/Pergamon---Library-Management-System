@@ -6,6 +6,7 @@ import java.util.UUID;
 import org.jdbi.v3.sqlobject.config.RegisterBeanMapper;
 import org.jdbi.v3.sqlobject.customizer.Bind;
 import org.jdbi.v3.sqlobject.customizer.BindBean;
+import org.jdbi.v3.sqlobject.customizer.Define;
 import org.jdbi.v3.sqlobject.statement.SqlQuery;
 import org.jdbi.v3.sqlobject.statement.SqlUpdate;
 
@@ -16,17 +17,17 @@ import com.pergamon.core.entites.Visitor;
 public interface ITransactionDA {
 
 	@SqlQuery("")
-	List<Transaction> GetUserTransactionsByUId(@Bind("id") String unıqUserId);
+	List<Transaction> GetUserTransactionsByUId(@Bind("id") String unıqUserId, @Define("organization_per_id") String organizationPerId);
 	
 	@SqlQuery("")
-	List<Transaction> GetAllTransactions();
+	List<Transaction> GetAllTransactions(@Define("organization_per_id") String organizationPerId);
 	
 	@SqlUpdate("")
-	void add(@BindBean Transaction transaction);
+	void add(@BindBean Transaction transaction, @Define("organization_per_id") String organizationPerId);
 	
 	@SqlUpdate("")
-	void update(@BindBean Transaction transaction);
+	void update(@BindBean Transaction transaction, @Define("organization_per_id") String organizationPerId);
 	
 	@SqlUpdate("")
-	void delete(@Bind("id") UUID id);
+	void delete(@Bind("id") UUID id, @Define("organization_per_id") String organizationPerId);
 }

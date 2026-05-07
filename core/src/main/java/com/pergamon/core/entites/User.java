@@ -11,6 +11,7 @@ public class User {
 	public String lastname;
 	public String passwordHash;
 	private EMail eMail;
+	public String organizationPerId;
 	
 	public void SetEMail(String eMail)
 	{

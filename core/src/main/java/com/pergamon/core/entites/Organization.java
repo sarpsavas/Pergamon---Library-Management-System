@@ -5,7 +5,7 @@ import java.util.UUID;
 
 public class Organization {
 	public UUID organizationId;
-	public String organizationPerId;
+	public String organizationPerId; //{PL}{000000}
 	private String organizationName;
 	public UUID organizationMasterAdminId;
 	

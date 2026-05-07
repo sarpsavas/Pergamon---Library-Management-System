@@ -6,6 +6,7 @@ import java.util.UUID;
 import org.jdbi.v3.sqlobject.config.RegisterBeanMapper;
 import org.jdbi.v3.sqlobject.customizer.Bind;
 import org.jdbi.v3.sqlobject.customizer.BindBean;
+import org.jdbi.v3.sqlobject.customizer.Define;
 import org.jdbi.v3.sqlobject.statement.SqlQuery;
 import org.jdbi.v3.sqlobject.statement.SqlUpdate;
 
@@ -16,20 +17,20 @@ import com.pergamon.core.entites.Visitor;
 public interface IAdminDA {
 	
 	@SqlQuery("")
-	List<Admin> GetAdminsByLetters(@Bind("letters") String letters);
+	List<Admin> GetAdminsByLetters(@Bind("letters") String letters, @Define("organization_per_id") String organizationPerId);
 	
 	@SqlQuery("")
-	Admin GetAdminById(@Bind("letters") UUID id);
+	Admin GetAdminById(@Bind("letters") UUID id, @Define("organization_per_id") String organizationPerId);
 	
 	@SqlQuery("")
-	Admin GetAdminByIdentity(@Bind("eMail") String eMail, @Bind("passwordHash") String passwordHash);
+	Admin GetAdminByIdentity(@Bind("eMail") String eMail, @Bind("passwordHash") String passwordHash, @Define("organization_per_id") String organizationPerId);
 	
 	@SqlUpdate("")
-	void add(@BindBean Admin admin);
+	void add(@BindBean Admin admin, @Define("organization_per_id") String organizationPerId);
 	
 	@SqlUpdate("")
-	void update(@BindBean Admin admin);
+	void update(@BindBean Admin admin, @Define("organization_per_id") String organizationPerId);
 	
 	@SqlUpdate("")
-	void delete(@Bind("id") UUID id);
+	void delete(@Bind("id") UUID id, @Define("organization_per_id") String organizationPerId);
 }

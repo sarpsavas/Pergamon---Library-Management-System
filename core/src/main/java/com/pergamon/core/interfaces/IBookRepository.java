@@ -5,9 +5,9 @@ import java.util.List;
 import com.pergamon.core.entites.Book;
 
 public interface IBookRepository {
-	List<Book> GetBooksByLetters(String letters);
+	List<Book> GetBooksByLetters(String letters, String organizationPerId);
 	
-	Book GetBookByBookId(String bookId);
+	Book GetBookByBookId(String bookId, String organizationPerId);
 	
 	
 	

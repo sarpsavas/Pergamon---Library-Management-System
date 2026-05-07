@@ -19,28 +19,28 @@ public class FeedbackRepositoryImpl implements IFeedbackRepository,IRepository<F
 		_jdbi = jdbi;
 	}
 	
-	public List<Feedback> GetAllFeedbacks()
+	public List<Feedback> GetAllFeedbacks( String organizationPerId)
 	{
-		return _jdbi.withExtension(IFeedbackDA.class, da -> da.GetAllFeedbacks());
+		return _jdbi.withExtension(IFeedbackDA.class, da -> da.GetAllFeedbacks(organizationPerId));
 	}
 	
-	public Feedback GetFeedbackByFeedbackId(UUID feedbackId)
+	public Feedback GetFeedbackByFeedbackId(UUID feedbackId, String organizationPerId)
 	{
-		return _jdbi.withExtension(IFeedbackDA.class, da -> da.GetFeedbackByFeedbackId(feedbackId));
+		return _jdbi.withExtension(IFeedbackDA.class, da -> da.GetFeedbackByFeedbackId(feedbackId, organizationPerId));
 	}
 	
 	public void add(Feedback feedback)
 	{
-		_jdbi.useExtension(IFeedbackDA.class, da -> da.add(feedback));
+		_jdbi.useExtension(IFeedbackDA.class, da -> da.add(feedback,feedback.organizationPerId));
 	}
 	
 	public void update(Feedback feedback)
 	{
-		_jdbi.useExtension(IFeedbackDA.class, da -> da.update(feedback));
+		_jdbi.useExtension(IFeedbackDA.class, da -> da.update(feedback,feedback.organizationPerId));
 	}
 	
-	public void delete(UUID FeedbackId)
+	public void delete(UUID FeedbackId, String organizationPerId)
 	{
-		_jdbi.useExtension(IFeedbackDA.class, da -> da.delete(FeedbackId));
+		_jdbi.useExtension(IFeedbackDA.class, da -> da.delete(FeedbackId,organizationPerId));
 	}
 }

@@ -19,33 +19,33 @@ public class VisitorRepositoryImpl implements IVisitorRepository, IRepository<Vi
 		_jdbi = jdbi;
 	}
 	
-	public List<Visitor> GetVisitorsByLetters(String letters)
+	public List<Visitor> GetVisitorsByLetters(String letters, String organizationPerId)
 	{
-		return _jdbi.withExtension(IVisitorDA.class, da -> da.GetVisitorsByLetters(letters));
+		return _jdbi.withExtension(IVisitorDA.class, da -> da.GetVisitorsByLetters(letters, organizationPerId));
 	}
 	
-	public Visitor GetVisitorById(UUID id)
+	public Visitor GetVisitorById(UUID id, String organizationPerId)
 	{
-		return _jdbi.withExtension(IVisitorDA.class, da -> da.GetVisitorById(id));
+		return _jdbi.withExtension(IVisitorDA.class, da -> da.GetVisitorById(id, organizationPerId));
 	}
 	
-	public Visitor GetVisitorByIdentity(String eMail, String passwordHash)
+	public Visitor GetVisitorByIdentity(String eMail, String passwordHash, String organizationPerId)
 	{
-		return _jdbi.withExtension(IVisitorDA.class, da -> da.GetVisitorByIdentity(eMail, passwordHash));
+		return _jdbi.withExtension(IVisitorDA.class, da -> da.GetVisitorByIdentity(eMail, passwordHash, organizationPerId));
 	}
 	
 	public void add(Visitor visitor)
 	{
-		_jdbi.useExtension(IVisitorDA.class, da -> {da.add(visitor);});
+		_jdbi.useExtension(IVisitorDA.class, da -> {da.add(visitor, visitor.organizationPerId);});
 	}
 	
 	public void update(Visitor visitor)
 	{
-		_jdbi.useExtension(IVisitorDA.class, da -> {da.update(visitor);});
+		_jdbi.useExtension(IVisitorDA.class, da -> {da.update(visitor, visitor.organizationPerId);});
 	}
 	
-	public void delete(UUID id)
+	public void delete(UUID id, String organizationPerId)
 	{
-		_jdbi.useExtension(IVisitorDA.class, da -> da.delete(id));
+		_jdbi.useExtension(IVisitorDA.class, da -> da.delete(id,organizationPerId));
 	}
 }

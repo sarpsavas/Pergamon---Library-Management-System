@@ -21,29 +21,29 @@ public class TransactionRepositoryImpl implements ITransactionRepository,IReposi
 		_jdbi = jdbi;
 	}
 	
-	public List<Transaction> GetUserTransactionsByUId(String unıqUserId)
+	public List<Transaction> GetUserTransactionsByUId(String unıqUserId, String organizationPerId)
 	{
-		return _jdbi.withExtension(ITransactionDA.class, da -> da.GetUserTransactionsByUId(unıqUserId));
+		return _jdbi.withExtension(ITransactionDA.class, da -> da.GetUserTransactionsByUId(unıqUserId, organizationPerId));
 	}
 	
-	public List<Transaction> GetAllTransactions()	
+	public List<Transaction> GetAllTransactions(String organizationPerId)	
 	{
-		return _jdbi.withExtension(ITransactionDA.class, da -> da.GetAllTransactions());
+		return _jdbi.withExtension(ITransactionDA.class, da -> da.GetAllTransactions(organizationPerId));
 				
 	}
 	
 	public void add(Transaction transaction)
 	{
-		_jdbi.useExtension(ITransactionDA.class, da -> {da.add(transaction);});
+		_jdbi.useExtension(ITransactionDA.class, da -> {da.add(transaction,transaction.organizationPerId);});
 	}
 	
 	public void update(Transaction transaction)
 	{
-		_jdbi.useExtension(ITransactionDA.class, da -> {da.update(transaction);});
+		_jdbi.useExtension(ITransactionDA.class, da -> {da.update(transaction,transaction.organizationPerId);});
 	}
 	
-	public void delete(UUID transactionId)
+	public void delete(UUID transactionId, String organizationPerId)
 	{
-		_jdbi.useExtension(ITransactionDA.class, da -> {da.delete(transactionId);});
+		_jdbi.useExtension(ITransactionDA.class, da -> {da.delete(transactionId,organizationPerId);});
 	}
 }

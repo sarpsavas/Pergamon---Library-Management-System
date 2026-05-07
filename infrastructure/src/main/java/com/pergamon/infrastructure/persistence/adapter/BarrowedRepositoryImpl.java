@@ -18,28 +18,28 @@ public class BarrowedRepositoryImpl implements IBarrowedRepository, IRepository<
 	{
 		_jdbi = jdbi;
 	}
-	public List<Barrowed> GetVisitorBarrowedsByVisitorId(UUID visitorId)
+	public List<Barrowed> GetVisitorBarrowedsByVisitorId(UUID visitorId, String organizationPerId)
 	{
-		return _jdbi.withExtension(IBarrowedDA.class, da -> da.GetBarrowedsByVisitorId(visitorId));
+		return _jdbi.withExtension(IBarrowedDA.class, da -> da.GetBarrowedsByVisitorId(visitorId, organizationPerId));
 	}
 	
-	public Barrowed GetBarrowedByBarrowedId(UUID barrowedId)
+	public Barrowed GetBarrowedByBarrowedId(UUID barrowedId, String organizationPerId)
 	{
-		return _jdbi.withExtension(IBarrowedDA.class, da -> da.GetBarrowedByBarrowedId(barrowedId));
+		return _jdbi.withExtension(IBarrowedDA.class, da -> da.GetBarrowedByBarrowedId(barrowedId,organizationPerId));
 	}
 	
 	public void add(Barrowed barrowed)
 	{
-		_jdbi.useExtension(IBarrowedDA.class, da -> da.add(barrowed));
+		_jdbi.useExtension(IBarrowedDA.class, da -> da.add(barrowed, barrowed.organizationPerId));
 	}
 	
 	public void update(Barrowed barrowed)
 	{
-		_jdbi.useExtension(IBarrowedDA.class, da -> da.update(barrowed));
+		_jdbi.useExtension(IBarrowedDA.class, da -> da.update(barrowed, barrowed.organizationPerId));
 	}
 	
-	public void delete(UUID barrowedId)
+	public void delete(UUID barrowedId, String organizationPerId)
 	{
-		_jdbi.useExtension(IBarrowedDA.class, da -> da.delete(barrowedId));
+		_jdbi.useExtension(IBarrowedDA.class, da -> da.delete(barrowedId, organizationPerId));
 	}
 }

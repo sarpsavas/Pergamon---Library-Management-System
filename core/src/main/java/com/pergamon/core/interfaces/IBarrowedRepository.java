@@ -7,9 +7,9 @@ import com.pergamon.core.entites.Barrowed;
 
 public interface IBarrowedRepository {
 	
-	List<Barrowed> GetVisitorBarrowedsByVisitorId(UUID visitorId);
+	List<Barrowed> GetVisitorBarrowedsByVisitorId(UUID visitorId, String organizationPerId);
 	
-	Barrowed GetBarrowedByBarrowedId(UUID barrowedId);
+	Barrowed GetBarrowedByBarrowedId(UUID barrowedId, String organizationPerId);
 	
 	
 }

@@ -5,9 +5,10 @@ import java.util.UUID;
 
 public class Feedback {
 	
-	UUID feedbackId;
-	String feedbackText;
-	LocalTime feedbackTime;
+	public UUID feedbackId;
+	public String organizationPerId;
+	public String feedbackText;
+	public LocalTime feedbackTime;
 	
 	public Feedback(String feedbackText)
 	{
