@@ -27,7 +27,7 @@ public class VisitorDeleteCommandHandler {
 		Transaction transaction = new Transaction();
 		transaction.type = TransactionType.DELETE_VISITOR;
 		try {
-			_repositoryUs.delete(request.VisitorId());
+			_repositoryUs.delete(request.visitorId(),request.organizationPerId());
 			transaction.succes = Succes.SUCCESSFUL;
 			
 		} catch (Exception e) {

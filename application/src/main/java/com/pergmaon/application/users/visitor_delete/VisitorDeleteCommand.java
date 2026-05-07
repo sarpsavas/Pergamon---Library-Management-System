@@ -3,6 +3,7 @@ package com.pergmaon.application.users.visitor_delete;
 import java.util.UUID;
 
 public record VisitorDeleteCommand(
-		UUID VisitorId) {
+		UUID visitorId,
+		String organizationPerId) {
 
 }
