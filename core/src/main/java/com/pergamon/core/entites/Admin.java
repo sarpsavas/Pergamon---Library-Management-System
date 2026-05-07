@@ -12,7 +12,7 @@ public class Admin extends User{
 	public AdminProfile status;
 	
 	
-	public Admin(String name, String lastname)
+	public Admin()
 	{
 		Random rnd = new Random();
 		accountId = "PA" + rnd.nextInt(8999999) + 1000000;

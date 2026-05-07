@@ -49,8 +49,8 @@ public class TeacherRegisterCommandHandler {
 			
 			Visitor visitor = new Visitor(AccountProfile.TEACHER, VisitorStatus.ACTIVE);
 			transaction.userId = visitor.id;
-			visitor.name = request.name();
-			visitor.lastname = request.lastname();
+			visitor.setName(request.name()); 
+			visitor.setLastname(request.lastname());
 			
 			HashHelper hasher = new HashHelper();
 			visitor.passwordHash = hasher.hashConverter(request.password());

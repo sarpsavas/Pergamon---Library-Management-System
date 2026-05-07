@@ -7,10 +7,10 @@ import com.pergamon.core.value_objects.EMail;
 public class User {
 	public UUID id;
 	public String accountId; //{PA}{_______}7
-	public String name;
-	public String lastname;
+	protected String name;
+	protected String lastname;
 	public String passwordHash;
-	private EMail eMail;
+	protected EMail eMail;
 	public String organizationPerId;
 	
 	public void SetEMail(String eMail)
