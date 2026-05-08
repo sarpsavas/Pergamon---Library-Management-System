@@ -3,6 +3,7 @@ package com.pergamon.infrastructure.persistence.adapter;
 import java.util.UUID;
 
 import org.jdbi.v3.core.Jdbi;
+import org.springframework.stereotype.Repository;
 
 import com.pergamon.core.entites.Admin;
 import com.pergamon.core.interfaces.IGeneralAdminRepository;
@@ -10,7 +11,8 @@ import com.pergamon.core.interfaces.IRepository;
 import com.pergamon.infrastructure.persistence.repository.IAdminDA;
 import com.pergamon.infrastructure.persistence.repository.IGeneralAdminDA;
 
-public class GeneralAdminRepositoryImpl implements IGeneralAdminRepository, IRepository<Admin> {
+@Repository
+public class GeneralAdminRepositoryImpl implements IGeneralAdminRepository {
 	
 	private Jdbi _jdbi;
 	

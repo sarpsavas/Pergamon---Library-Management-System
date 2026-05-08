@@ -2,9 +2,11 @@ package com.pergamon.infrastructure.persistence.adapter;
 
 
 import org.jdbi.v3.core.Jdbi;
+import org.springframework.stereotype.Repository;
+
 import com.pergamon.core.interfaces.IOrganizationMigration;
 import com.pergamon.infrastructure.persistence.repository.IOrganizationDA;
-
+@Repository
 public class OrganizationMigrationImpl implements IOrganizationMigration
 {
 	

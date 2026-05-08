@@ -23,6 +23,7 @@ public class AdminRegisterCommandHandler {
 	private IRepository<Transaction> _repositoryTr;
 	private IOrganizationRepository _orgRepository;
 	
+	@CommandHandler
 	public AdminRegisterCommandHandler(IRepository<Admin> repositoryAd, IRepository<Transaction> repositoryTr,IOrganizationRepository orgRepository)
 	{
 		_repositoryAd = repositoryAd;

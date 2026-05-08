@@ -4,12 +4,14 @@ import java.util.List;
 import java.util.UUID;
 
 import org.jdbi.v3.core.Jdbi;
+import org.springframework.stereotype.Repository;
 
 import com.pergamon.core.entites.Visitor;
 import com.pergamon.core.interfaces.IRepository;
 import com.pergamon.core.interfaces.IVisitorRepository;
 import com.pergamon.infrastructure.persistence.repository.IVisitorDA;
 
+@Repository
 public class VisitorRepositoryImpl implements IVisitorRepository, IRepository<Visitor> {
 	
 	private final Jdbi _jdbi;

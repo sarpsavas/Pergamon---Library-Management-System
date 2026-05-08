@@ -8,12 +8,14 @@ import org.jdbi.v3.sqlobject.customizer.Bind;
 import org.jdbi.v3.sqlobject.customizer.BindBean;
 import org.jdbi.v3.sqlobject.customizer.Define;
 import org.jdbi.v3.sqlobject.statement.SqlUpdate;
+import org.springframework.stereotype.Repository;
 
 import com.pergamon.core.entites.Admin;
 import com.pergamon.core.entites.Transaction;
 import com.pergamon.core.interfaces.IManagementTransactionRepository;
 import com.pergamon.infrastructure.persistence.repository.IManagementTransactionDA;
 
+@Repository
 public class ManagementTransactionRepositoryImpl implements IManagementTransactionRepository{
 	
 	private final Jdbi _jdbi;

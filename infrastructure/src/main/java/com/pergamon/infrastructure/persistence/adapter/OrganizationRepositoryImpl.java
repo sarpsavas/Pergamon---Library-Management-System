@@ -8,6 +8,7 @@ import org.jdbi.v3.sqlobject.customizer.Bind;
 import org.jdbi.v3.sqlobject.customizer.BindBean;
 import org.jdbi.v3.sqlobject.statement.SqlQuery;
 import org.jdbi.v3.sqlobject.statement.SqlUpdate;
+import org.springframework.stereotype.Repository;
 
 import com.pergamon.core.entites.Organization;
 import com.pergamon.core.interfaces.IOrganizationRepository;
@@ -15,6 +16,7 @@ import com.pergamon.core.interfaces.IRepository;
 import com.pergamon.infrastructure.persistence.repository.IOrganizationDA;
 import com.pergamon.infrastructure.persistence.repository.IOrganizationRepDA;
 
+@Repository
 public class OrganizationRepositoryImpl implements IOrganizationRepository, IRepository<Organization> {
 
 		private final Jdbi _jdbi;

@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.UUID;
 
 import org.jdbi.v3.core.Jdbi;
+import org.springframework.stereotype.Repository;
 
 import com.pergamon.core.entites.Transaction;
 import com.pergamon.core.entites.Visitor;
@@ -12,6 +13,7 @@ import com.pergamon.core.interfaces.ITransactionRepository;
 import com.pergamon.infrastructure.persistence.repository.ITransactionDA;
 import com.pergamon.infrastructure.persistence.repository.IVisitorDA;
 
+@Repository
 public class TransactionRepositoryImpl implements ITransactionRepository,IRepository<Transaction>
 {
 	private final Jdbi _jdbi;
