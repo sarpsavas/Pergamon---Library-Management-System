@@ -30,12 +30,12 @@ public class Organization {
 	{
 		return organizationName;
 	}
-	public String getOrganizationId()
+	public UUID getOrganizationId()
 	{
-		return organizationName;
+		return organizationId;
 	}
 	public String getOrganizationPerId()
 	{
-		return organizationName;
+		return organizationPerId;
 	}
 }

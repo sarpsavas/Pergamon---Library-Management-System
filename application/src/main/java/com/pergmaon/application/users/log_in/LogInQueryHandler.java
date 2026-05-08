@@ -3,6 +3,7 @@ package com.pergmaon.application.users.log_in;
 import java.util.UUID;
 
 import org.axonframework.commandhandling.CommandHandler;
+import org.axonframework.queryhandling.QueryHandler;
 
 import com.pergamon.application.jwt.JwtUtil;
 import com.pergamon.core.enums.LogInOption;
@@ -27,7 +28,7 @@ public class LogInQueryHandler {
 		_orRepository = orRepository;
 	}
 	
-	@CommandHandler
+	@QueryHandler
 	public LogInResponse Handle(LogInQuery request)
 	{
 		LogInResponse response = new LogInResponse();
