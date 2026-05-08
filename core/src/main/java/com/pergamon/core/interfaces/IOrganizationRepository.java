@@ -1,18 +1,12 @@
 package com.pergamon.core.interfaces;
 
-import java.util.UUID;
-
+import java.util.List;
 
 import com.pergamon.core.entites.Organization;
 
 public interface IOrganizationRepository {
 	
-	
-	Organization getOrganizationByOrganizationId(  UUID organizationId);
-	
-	
-	Organization getOrganizationByOrganizationPerId(  String organizationperId);
-	
-	
+	List<Organization> getOrganizations();
+	Organization getOrganizationByOrganizationPerId(String organizationPerId);
 	
 }

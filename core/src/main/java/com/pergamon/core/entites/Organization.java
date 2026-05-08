@@ -4,8 +4,8 @@ import java.util.Random;
 import java.util.UUID;
 
 public class Organization {
-	public UUID organizationId;
-	public String organizationPerId; //{PL}{000000}
+	private UUID organizationId;
+	private String organizationPerId; //{PL}{000000}
 	private String organizationName;
 	public UUID organizationMasterAdminId;
 	
@@ -27,6 +27,14 @@ public class Organization {
 	}
 	
 	public String getOrganizationName()
+	{
+		return organizationName;
+	}
+	public String getOrganizationId()
+	{
+		return organizationName;
+	}
+	public String getOrganizationPerId()
 	{
 		return organizationName;
 	}

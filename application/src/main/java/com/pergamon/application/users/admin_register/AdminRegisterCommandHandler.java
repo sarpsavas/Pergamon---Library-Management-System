@@ -13,6 +13,7 @@ import com.pergamon.core.enums.Succes;
 import com.pergamon.core.enums.TransactionType;
 import com.pergamon.core.enums.VisitorStatus;
 import com.pergamon.core.interfaces.IOrganizationRepository;
+import com.pergamon.core.interfaces.IOrganizationRepository;
 import com.pergamon.core.interfaces.IRepository;
 
 @Component
@@ -58,6 +59,7 @@ public class AdminRegisterCommandHandler {
 			
 			_repositoryAd.add(admin);
 			transaction.succes = Succes.SUCCESSFUL;
+			
 		} catch (Exception e) {
 			transaction.succes = Succes.UNSUCCESSFUL;
 			_repositoryTr.add(transaction);

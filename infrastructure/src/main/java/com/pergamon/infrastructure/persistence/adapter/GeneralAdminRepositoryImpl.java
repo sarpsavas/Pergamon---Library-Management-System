@@ -26,7 +26,7 @@ public class GeneralAdminRepositoryImpl implements IGeneralAdminRepository, IRep
 	
 	public Admin GetIdByIdentity(String eMail, String passwordHash)
 	{
-		return _jdbi.withExtension(IGeneralAdminDA.class, da -> da.GetIdByıdentity(eMail, passwordHash));
+		return _jdbi.withExtension(IGeneralAdminDA.class, da -> da.GetIdByIdentity(eMail, passwordHash));
 	}
 	
 	public void add(Admin admin)

@@ -40,18 +40,18 @@ public class UserController {
 	
 	//TODO: visitor-sign-up
 	
-	@GetMapping("/log-in")  //visitor + admin
-	public CompletableFuture<LogInResponse> BookSearch(@RequestBody LogInQuery request) 
-	{
-		try { 
-			return _qGateway.query(
-			        new LogInQuery(request.email(), request.password(), request.organization_pergamon_id()), 
-			        ResponseTypes.instanceOf(LogInResponse.class));
-		}
-		catch (Exception e) {
-			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
-		}
-	}
+//	@GetMapping("/log-in")  //visitor + admin
+//	public CompletableFuture<LogInResponse> BookSearch(@RequestBody LogInQuery request) 
+//	{
+//		try { 
+//			return _qGateway.query(
+//			        new LogInQuery(request.email(), request.password(), request.organization_pergamon_id()), 
+//		        ResponseTypes.instanceOf(LogInResponse.class));
+//		}
+//		catch (Exception e) {
+//			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
+//		}
+//	}
 	
 	//TODO: visitor-delete
 	

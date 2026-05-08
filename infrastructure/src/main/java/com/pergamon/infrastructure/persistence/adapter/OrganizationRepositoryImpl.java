@@ -1,53 +1,51 @@
 package com.pergamon.infrastructure.persistence.adapter;
 
+import java.util.List;
 import java.util.UUID;
 
 import org.jdbi.v3.core.Jdbi;
 import org.jdbi.v3.sqlobject.customizer.Bind;
 import org.jdbi.v3.sqlobject.customizer.BindBean;
+import org.jdbi.v3.sqlobject.statement.SqlQuery;
 import org.jdbi.v3.sqlobject.statement.SqlUpdate;
 
 import com.pergamon.core.entites.Organization;
 import com.pergamon.core.interfaces.IOrganizationRepository;
 import com.pergamon.core.interfaces.IRepository;
-import com.pergamon.infrastructure.persistence.repository.IOrganizationsDA;
+import com.pergamon.infrastructure.persistence.repository.IOrganizationDA;
+import com.pergamon.infrastructure.persistence.repository.IOrganizationRepDA;
 
-public class OrganizationRepositoryImpl implements IOrganizationRepository,
-IRepository<Organization>
-{
-	
-	private final Jdbi _jdbi;
-	
-	public OrganizationRepositoryImpl(Jdbi jdbi)
-	{
-		_jdbi = jdbi;
-	}
-	
-	public Organization getOrganizationByOrganizationId(UUID organizationId)
-	{
-		return _jdbi.withExtension(IOrganizationsDA.class, da -> da.getOrganizationByOrganizationId(organizationId));
-	}
-	
-	public Organization getOrganizationByOrganizationPerId(String organizationPerId)
-	{
-		return _jdbi.withExtension(IOrganizationsDA.class, da -> da.getOrganizationByOrganizationPerId(organizationPerId));
-	}
-	
-	
-	public void add(Organization organization)
-	{
-		_jdbi.useExtension(IOrganizationsDA.class, da -> da.add(organization));
-	}
-	
-	
-	public void update(Organization organization)
-	{
-		_jdbi.useExtension(IOrganizationsDA.class, da -> da.update(organization));
-	}
-	
-	
-	public void delete(UUID id, String organizationPerId)
-	{
-		_jdbi.useExtension(IOrganizationsDA.class, da -> da.delete(id));
-	}
+public class OrganizationRepositoryImpl implements IOrganizationRepository, IRepository<Organization> {
+
+		private final Jdbi _jdbi;
+		
+		public OrganizationRepositoryImpl(Jdbi jdbi)
+		{
+			_jdbi = jdbi;
+		}
+		
+		public List<Organization> getOrganizations()
+		{
+			return _jdbi.withExtension(IOrganizationRepDA.class, da -> da.getOrganizations());
+		}
+		
+		public Organization getOrganizationByOrganizationPerId(String organizationPerId)
+		{
+			return _jdbi.withExtension(IOrganizationRepDA.class, da -> da.getOrganizationByOrganizationPerId(organizationPerId));
+		}
+		
+		public void add(Organization admin)
+		{
+			_jdbi.useExtension(IOrganizationRepDA.class, da -> da.add(admin));
+		}
+		
+		public void update(Organization admin)
+		{
+			_jdbi.useExtension(IOrganizationRepDA.class, da -> da.update(admin));
+		}
+		
+		public void delete(UUID id, String nullVeriable)
+		{
+			_jdbi.useExtension(IOrganizationRepDA.class, da -> da.delete(id));
+		}
 }

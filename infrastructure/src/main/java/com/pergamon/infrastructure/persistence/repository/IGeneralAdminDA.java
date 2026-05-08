@@ -18,7 +18,7 @@ public interface IGeneralAdminDA {
 	Admin GetAdminById(@Bind("id")UUID id);
 	
 	@SqlQuery("")
-	Admin GetIdByıdentity(@Bind("email")String email, @Bind("passwordhash")String passwordHash);
+	Admin GetIdByIdentity(@Bind("email")String email, @Bind("passwordhash")String passwordHash);
 	
 	@SqlUpdate("")//define null
 	void add(@BindBean Admin admin, @Define("organization_per_id") String organizationPerId);

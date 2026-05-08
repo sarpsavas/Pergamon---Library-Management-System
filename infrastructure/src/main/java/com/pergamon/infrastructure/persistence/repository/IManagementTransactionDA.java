@@ -1,5 +1,6 @@
 package com.pergamon.infrastructure.persistence.repository;
 
+import java.util.List;
 import java.util.UUID;
 
 import org.jdbi.v3.sqlobject.config.RegisterBeanMapper;
@@ -9,23 +10,20 @@ import org.jdbi.v3.sqlobject.customizer.Define;
 import org.jdbi.v3.sqlobject.statement.SqlQuery;
 import org.jdbi.v3.sqlobject.statement.SqlUpdate;
 
-import com.pergamon.core.entites.Organization;
-import com.pergamon.core.entites.Visitor;
+import com.pergamon.core.entites.Admin;
+import com.pergamon.core.entites.Transaction;
 
-@RegisterBeanMapper(Organization.class)
-public interface IOrganizationsDA {
+@RegisterBeanMapper(Transaction.class)
+public interface IManagementTransactionDA {
 	
 	@SqlQuery("")
-	Organization getOrganizationByOrganizationId(@Bind("id")  UUID organizationId);
-	
-	@SqlQuery("")
-	Organization getOrganizationByOrganizationPerId(@Bind("id")  String organizationperId);
+	List<Transaction> getAllManagementTransaction();
 	
 	@SqlUpdate("")
-	void add(@BindBean Organization visitor);
+	void add(@BindBean Transaction transaction);
 	
 	@SqlUpdate("")
-	void update(@BindBean Organization visitor);
+	void update(@BindBean Transaction transaction);
 	
 	@SqlUpdate("")
 	void delete(@Bind("id") UUID id);
