@@ -66,4 +66,19 @@ public class Book {
 	}
 	
 	
+	public String getId() {
+	    return id;
+	}
+
+	
+	public BookType getBookType() {
+	    return bookType;
+	}
+
+
+	public Availability getAvailability() {
+	    return availability;
+	}
+	
+	
 }

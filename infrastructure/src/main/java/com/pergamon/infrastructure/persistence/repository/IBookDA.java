@@ -24,8 +24,8 @@ public interface IBookDA {
 	@SqlQuery("SELECT * FROM Books WHERE :Id = Id;")
 	Book GetBookByBookId(@Bind("Id") String Id, @Define("organization_per_id") String organizationPerId);
 	//TODO: Add
-	@SqlUpdate("INSERT INTO Books (Id, Name, Author, BookType, Availability,Pages) \r\n"
-			+ "VALUES (:Id, :Name, :Author, 1, 1, :PageNumber);")
+	@SqlUpdate("INSERT INTO Books (BookId, Name, Author, Category, Availability,Pages) "
+			+ "VALUES ( :id, :name, :author, :bookType, :availability, :pageNumber);")
 	void add(@BindBean Book book, @Define("organization_per_id") String organizationPerId);
 	
 	//TODO: Update

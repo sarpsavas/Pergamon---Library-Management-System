@@ -23,6 +23,11 @@ public class CreateBookCommandHandler {
 	{
 		Book book = new Book();
 		book.name = request.name();
+		book.author = request.author();
+		book.availability = request.availability();
+		book.bookType = request.booktype();
+		book.setPageNumber(request.pagenumber());
+		book.organizationPerId = null;
 		
 		_repository.add(book);
 		

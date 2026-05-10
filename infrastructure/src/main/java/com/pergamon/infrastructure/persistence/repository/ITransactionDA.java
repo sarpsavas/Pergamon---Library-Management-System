@@ -22,7 +22,8 @@ public interface ITransactionDA {
 	@SqlQuery("")
 	List<Transaction> GetAllTransactions(@Define("organization_per_id") String organizationPerId);
 	
-	@SqlUpdate("")
+	@SqlUpdate("INSERT INTO Transactions (TransactionId, UserId, Author, Category, Availability,Pages) "
+			+ "VALUES ( :id, :name, :author, :bookType, :availability, :pageNumber);")
 	void add(@BindBean Transaction transaction, @Define("organization_per_id") String organizationPerId);
 	
 	@SqlUpdate("")

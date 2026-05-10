@@ -25,7 +25,8 @@ public interface IAdminDA {
 	@SqlQuery("")
 	Admin GetAdminByIdentity(@Bind("eMail") String eMail, @Bind("passwordHash") String passwordHash, @Define("organization_per_id") String organizationPerId);
 	
-	@SqlUpdate("")
+	@SqlUpdate("INSERT INTO Admins (UserId, Name, Author, Category, Availability,Pages) "
+			+ "VALUES ( :id, :name, :author, :bookType, :availability, :pageNumber);")
 	void add(@BindBean Admin admin, @Define("organization_per_id") String organizationPerId);
 	
 	@SqlUpdate("")
