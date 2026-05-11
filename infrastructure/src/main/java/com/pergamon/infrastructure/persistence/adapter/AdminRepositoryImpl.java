@@ -22,9 +22,9 @@ private final Jdbi _jdbi;
 		_jdbi = jdbi;
 	}
 	
-	public List<Admin> GetAdminsByLetters(String letters, String organizationPerId)
+	public List<Admin> GetAdmins(String organizationPerId)
 	{
-		return _jdbi.withExtension(IAdminDA.class, da -> da.GetAdminsByLetters(letters,organizationPerId));
+		return _jdbi.withExtension(IAdminDA.class, da -> da.GetAdmins(organizationPerId));
 	}
 	
 	public Admin GetAdminById(UUID id, String organizationPerId)

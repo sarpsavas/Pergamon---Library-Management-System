@@ -17,7 +17,7 @@ import com.pergamon.core.entites.Visitor;
 public interface IAdminDA {
 	
 	@SqlQuery("")
-	List<Admin> GetAdminsByLetters(@Bind("letters") String letters, @Define("organization_per_id") String organizationPerId);
+	List<Admin> GetAdmins( @Define("organization_per_id") String organizationPerId);
 	
 	@SqlQuery("")
 	Admin GetAdminById(@Bind("letters") UUID id, @Define("organization_per_id") String organizationPerId);
