@@ -7,6 +7,7 @@ import org.axonframework.queryhandling.QueryHandler;
 
 import com.pergamon.application.jwt.JwtUtil;
 import com.pergamon.core.enums.LogInOption;
+import com.pergamon.core.enums.VisitorStatus;
 import com.pergamon.core.interfaces.IAdminRepository;
 import com.pergamon.core.interfaces.IOrganizationRepository;
 import com.pergamon.core.interfaces.IVisitorRepository;
@@ -38,6 +39,7 @@ public class LogInQueryHandler {
 		if(request.log_in_option() == LogInOption.VISITOR)
 		{
 			var visitor = _viRepository.GetVisitorByIdentity(request.email(), request.toString(),request.organization_pergamon_id());
+			if(visitor.status == VisitorStatus.BLOCKED) {throw new IllegalArgumentException("VisitorStatus.BLOCKED");}
 			if(visitor == null) {throw new IllegalArgumentException();}
 			response.organizationPerId = request.organization_pergamon_id();
 			response.id = visitor.id;

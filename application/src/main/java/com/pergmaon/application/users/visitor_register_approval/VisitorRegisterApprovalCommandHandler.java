@@ -56,9 +56,9 @@ public class VisitorRegisterApprovalCommandHandler {
 			transaction.type = TransactionType.REGISTER_VISITOR_REJECT;
 			try {
 				Visitor visitor = _visRepository.GetVisitorById(request.id(),request.organizationperid());
-				visitor.status = VisitorStatus.ACTIVE;
+				
 
-				_repositoryVi.update(visitor);
+				_repositoryVi.delete(visitor.id, visitor.organizationPerId);
 				
 				transaction.succes = Succes.SUCCESSFUL;
 				_repositoryTr.add(transaction);
