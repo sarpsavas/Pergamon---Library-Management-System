@@ -24,7 +24,9 @@ public class AdminRegisterCommandHandler {
 	private IOrganizationRepository _orgRepository;
 	
 	
-	public AdminRegisterCommandHandler(IRepository<Admin> repositoryAd, IRepository<Transaction> repositoryTr,IOrganizationRepository orgRepository)
+	public AdminRegisterCommandHandler(IRepository<Admin> repositoryAd,
+			IRepository<Transaction> repositoryTr,
+			IOrganizationRepository orgRepository)
 	{
 		_repositoryAd = repositoryAd;
 		_repositoryTr = repositoryTr;
