@@ -48,6 +48,7 @@ public class DeleteAdminCommandHandler {
 		} catch (Exception e) {
 			transaction.succes = Succes.UNSUCCESSFUL;
 			_repositortTr.add(transaction);
+			throw new IllegalArgumentException("DeleteAdminCommand Exception");
 		}
 	}
 }
