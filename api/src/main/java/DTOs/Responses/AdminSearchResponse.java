@@ -1,10 +1,11 @@
-package com.pergamon.core.entites;
+package DTOs.Responses;
 
 import java.util.UUID;
 
+import com.pergamon.core.enums.AdminProfile;
 import com.pergamon.core.value_objects.EMail;
 
-public class User {
+public class AdminSearchResponse {
 	public UUID id;
 	public String accountId; //{PA}{_______}7
 	protected String name;
@@ -12,11 +13,6 @@ public class User {
 	public String passwordHash;
 	protected EMail eMail;
 	public String organizationPerId;
-	
-	public void SetEMail(String eMail)
-	{
-		this.eMail = new EMail(eMail);
-	}
-	
-}
+	public AdminProfile status;
 
+}
