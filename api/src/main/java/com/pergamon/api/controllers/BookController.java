@@ -8,10 +8,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import com.pergamon.application.command.book.CreateBookCommand;
+import com.pergamon.application.responses.*;
 
 import java.util.List;
 import DTOs.Requests.*;
-import DTOs.Responses.*;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;

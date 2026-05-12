@@ -20,6 +20,9 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
 import com.pergamon.application.command.book.CreateBookCommand;
+import com.pergamon.application.responses.AdminSearchResponse;
+import com.pergamon.application.responses.BookResponse;
+import com.pergamon.application.responses.VisitorSearchResponse;
 import com.pergamon.application.users.admin_delete.DeleteAdminCommand;
 import com.pergamon.application.users.admin_register.AdminRegisterCommand;
 import com.pergamon.application.users.admin_search.AdminSearchQuery;
@@ -33,9 +36,6 @@ import com.pergamon.core.responses.LogInResponse;
 import com.pergmaon.application.users.log_in.LogInQuery;
 import com.pergmaon.application.users.visitor_delete.VisitorDeleteCommand;
 import com.pergmaon.application.users.visitor_register_approval.VisitorRegisterApprovalCommand;
-
-import DTOs.Responses.AdminSearchResponse;
-import DTOs.Responses.BookResponse;
 
 @RestController
 @RequestMapping("/api/v1/user")
@@ -135,11 +135,11 @@ public class UserController {
 	}
 	
 	@GetMapping("/visitor-search")  
-	public CompletableFuture<LogInResponse> VisitorSearch(@RequestBody VisitorSearchQuery request) 
+	public CompletableFuture<VisitorSearchResponse> VisitorSearch(@RequestBody VisitorSearchQuery request) 
 	{
 		try { 
 			return _qGateway.query(request, 
-		        ResponseTypes.instanceOf(LogInResponse.class));
+		        ResponseTypes.instanceOf(VisitorSearchResponse.class));
 		}
 		catch (Exception e) {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());

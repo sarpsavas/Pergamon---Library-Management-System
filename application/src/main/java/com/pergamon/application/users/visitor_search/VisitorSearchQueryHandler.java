@@ -5,6 +5,7 @@ import java.util.List;
 import org.axonframework.queryhandling.QueryHandler;
 import org.springframework.stereotype.Component;
 
+import com.pergamon.application.responses.VisitorSearchResponse;
 import com.pergamon.core.entites.Visitor;
 import com.pergamon.core.interfaces.IVisitorRepository;
 
@@ -19,10 +20,10 @@ public class VisitorSearchQueryHandler {
 	}
 	
 	@QueryHandler
-	public List<Visitor> handle(VisitorSearchQuery request)
+	public VisitorSearchResponse handle(VisitorSearchQuery request)
 	{
-		
-			return _visRepository.GetVisitorsByLetters(request.organizationName(), request.letters());
-		
+		VisitorSearchResponse response = new VisitorSearchResponse();
+		response.visitors = _visRepository.GetVisitorsByLetters(request.organizationName(), request.letters());
+		return response;
 	}
 }

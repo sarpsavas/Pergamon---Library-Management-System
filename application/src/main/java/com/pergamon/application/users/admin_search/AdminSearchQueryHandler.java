@@ -5,6 +5,7 @@ import java.util.List;
 import org.axonframework.queryhandling.QueryHandler;
 import org.springframework.stereotype.Component;
 
+import com.pergamon.application.responses.AdminSearchResponse;
 import com.pergamon.core.entites.Admin;
 import com.pergamon.core.interfaces.IAdminRepository;
 
@@ -19,8 +20,10 @@ public class AdminSearchQueryHandler {
 	}
 	
 	@QueryHandler
-	public List<Admin> handle(AdminSearchQuery request)
+	public AdminSearchResponse handle(AdminSearchQuery request)
 	{
-		return _admRepository.GetAdmins(request.organizationPerId());
+		AdminSearchResponse response = new AdminSearchResponse();
+		response.admins = _admRepository.GetAdmins(request.organizationPerId());
+		return response;
 	}
 }

@@ -1,4 +1,4 @@
-package DTOs.Responses;
+package com.pergamon.application.responses;
 
 
 
