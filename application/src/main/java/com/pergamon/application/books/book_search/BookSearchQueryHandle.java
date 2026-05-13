@@ -18,7 +18,7 @@ public class BookSearchQueryHandle {
 	 public BookSearchResponse handle(BookSearchQuery request)
 	 {
 		 BookSearchResponse response = new BookSearchResponse();
-		 response.books = _bookRepository.GetBooksByLetters(request.letters(), request.organizationPerId());
+		 response.books = _bookRepository.GetBooksByLetters(request.letters(),request.type(), request.page(), request.organizationPerId());
 		 return response;
 	 }
 }

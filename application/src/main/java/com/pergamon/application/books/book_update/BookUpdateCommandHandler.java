@@ -41,7 +41,6 @@ public class BookUpdateCommandHandler {
 			book.bookType = request.bookType();
 			book.setPageNumber(request.pageNumber());
 			book.organizationPerId = request.organizationPerId();
-			book.imageUrl = "-";
 			
 			_repositoryBo.update(book);
 			

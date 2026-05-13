@@ -8,6 +8,7 @@ import com.pergamon.core.enums.BookType;
 
 
 public class Book {
+	
 	public String id; // {PB}+{0000000}
 	private String name;
 	private String author;
