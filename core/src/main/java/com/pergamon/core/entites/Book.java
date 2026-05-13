@@ -9,12 +9,13 @@ import com.pergamon.core.enums.BookType;
 
 public class Book {
 	public String id; // {PB}+{0000000}
-	public String name;
-	public String author;
+	private String name;
+	private String author;
 	public BookType bookType;
 	public Availability availability;
 	private int pageNumber;
 	public String organizationPerId;
+	public String imageUrl;
 	
 	
 	public Book()
@@ -78,6 +79,15 @@ public class Book {
 
 	public Availability getAvailability() {
 	    return availability;
+	}
+	
+	public String getOrganizationPerId()
+	{
+		return organizationPerId;
+	}
+	public String getImageUrl()
+	{
+		return imageUrl;
 	}
 	
 	
