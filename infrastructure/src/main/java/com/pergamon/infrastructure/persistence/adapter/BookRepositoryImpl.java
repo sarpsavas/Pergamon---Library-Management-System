@@ -15,7 +15,7 @@ import com.pergamon.core.interfaces.IRepository;
 import com.pergamon.infrastructure.persistence.repository.IBookDA;
 
 @Repository
-public class BookRepositoryImpl implements IBookRepository, IRepository<Book>{
+public class BookRepositoryImpl implements IBookRepository{
 	
 	private final Jdbi _jdbi;
 	
@@ -46,7 +46,7 @@ public class BookRepositoryImpl implements IBookRepository, IRepository<Book>{
 		});
 	}
 	
-	public void delete(UUID id, String organizationPerId)
+	public void delete(String id, String organizationPerId)
 	{
 		_jdbi.useExtension(IBookDA.class, da -> {da.delete(id,organizationPerId);
 		});

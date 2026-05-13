@@ -1,6 +1,4 @@
-package com.pergamon.application.books.book_add;
-
-
+package com.pergamon.application.books.book_update;
 
 import org.axonframework.commandhandling.CommandHandler;
 import org.springframework.stereotype.Component;
@@ -13,22 +11,22 @@ import com.pergamon.core.enums.TransactionType;
 import com.pergamon.core.interfaces.IRepository;
 
 @Component
-public class BookAddCommandHandler {
+public class BookUpdateCommandHandler {
 
 	private IRepository<Book> _repositoryBo;
 	private IRepository<Transaction> _repositoryTr;
 	
-	public BookAddCommandHandler(IRepository<Book> repositoryBo,IRepository<Transaction> repositoryTr)
+	public BookUpdateCommandHandler(IRepository<Book> repositoryBo,IRepository<Transaction> repositoryTr)
 	{
 		_repositoryBo = repositoryBo;
 		_repositoryTr = repositoryTr;
-	}
+	} 
 	
 	@CommandHandler
-	public void handle(BookAddCommand request)
+	public void handle(BookUpdateCommand request)
 	{
 		Transaction transaction = new Transaction();
-		transaction.type = TransactionType.ADD_BOOK;
+		transaction.type = TransactionType.UPDATE_BOOK;
 		transaction.organizationPerId = request.organizationPerId();
 		transaction.userId = request.defaultAdminId();
 		transaction.setDescription("-");
@@ -36,6 +34,7 @@ public class BookAddCommandHandler {
 		try 
 		{
 			Book book = new Book();
+			book.id = request.id();
 			book.setName(request.name());
 			book.setAuthor(request.author());
 			book.availability = Availability.AVAILABLE;
@@ -44,7 +43,7 @@ public class BookAddCommandHandler {
 			book.organizationPerId = request.organizationPerId();
 			book.imageUrl = "-";
 			
-			_repositoryBo.add(book);
+			_repositoryBo.update(book);
 			
 			transaction.succes = Succes.SUCCESSFUL;
 			_repositoryTr.add(transaction);
@@ -52,8 +51,7 @@ public class BookAddCommandHandler {
 		catch (Exception e) {
 			transaction.succes = Succes.UNSUCCESSFUL;
 			_repositoryTr.add(transaction);
-			throw new IllegalArgumentException("BookAddCommand exception");
+			throw new IllegalArgumentException("BookUpdateCommand exception");
 		}
-		
 	}
 }

@@ -6,8 +6,7 @@ import com.pergamon.core.enums.Availability;
 import com.pergamon.core.enums.BookType;
 
 public record BookAddCommand(
-		UUID defaultAdminId,
-		String id, // {PB}+{0000000}
+		UUID defaultAdminId, // {PB}+{0000000}
 		String name,
 		String author,
 		BookType bookType,

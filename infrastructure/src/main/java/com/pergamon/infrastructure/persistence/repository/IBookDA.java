@@ -34,7 +34,7 @@ public interface IBookDA {
 	
 	//TODO: Delete
 	@SqlUpdate("")
-	void delete(@Bind("Id") UUID Id, @Define("organization_per_id") String organizationPerId );
+	void delete(@Bind("Id") String Id, @Define("organization_per_id") String organizationPerId );
 	
 
 }

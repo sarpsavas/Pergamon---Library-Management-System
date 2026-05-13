@@ -9,6 +9,10 @@ public interface IBookRepository {
 	
 	Book GetBookByBookId(String bookId, String organizationPerId);
 	
+	public void add(Book book);
 	
+	public void update(Book book);
+	
+	public void delete(String id, String organizationPerId);
 	
 }
