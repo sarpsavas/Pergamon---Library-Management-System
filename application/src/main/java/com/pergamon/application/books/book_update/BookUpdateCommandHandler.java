@@ -47,7 +47,8 @@ public class BookUpdateCommandHandler {
 			transaction.succes = Succes.SUCCESSFUL;
 			_repositoryTr.add(transaction);
 		} 
-		catch (Exception e) {
+		catch (Exception e) 
+		{
 			transaction.succes = Succes.UNSUCCESSFUL;
 			_repositoryTr.add(transaction);
 			throw new IllegalArgumentException("BookUpdateCommand exception");

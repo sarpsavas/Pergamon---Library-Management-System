@@ -10,7 +10,7 @@ public class Feedback {
 	public String feedbackText;
 	public LocalTime feedbackTime;
 	
-	public Feedback(String feedbackText)
+	public Feedback(String feedbackText, String organizationPerId)
 	{
 		this.feedbackId = UUID.randomUUID();
 		this.feedbackText = feedbackText;
