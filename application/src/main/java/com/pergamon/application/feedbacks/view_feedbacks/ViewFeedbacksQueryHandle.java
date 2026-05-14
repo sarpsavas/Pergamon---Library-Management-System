@@ -5,6 +5,7 @@ import java.util.List;
 import org.axonframework.queryhandling.QueryHandler;
 import org.springframework.stereotype.Component;
 
+import com.pergamon.application.responses.ViewFeedbacksResponse;
 import com.pergamon.core.entites.Feedback;
 import com.pergamon.core.interfaces.IFeedbackRepository;
 
@@ -19,8 +20,8 @@ public class ViewFeedbacksQueryHandle {
 	}
 	
 	@QueryHandler
-	public List<Feedback> handle(ViewFeedbacksQuery request)
+	public ViewFeedbacksResponse handle(ViewFeedbacksQuery request)
 	{
-		return _feRepository.GetAllFeedbacks(request.organizationPerId());
+		return new ViewFeedbacksResponse(_feRepository.GetAllFeedbacks(request.organizationPerId()));
 	}
 }
