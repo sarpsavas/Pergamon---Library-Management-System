@@ -18,3 +18,12 @@ axon:
 	
 storage:
   location: /var/www/photostore/images/  
+  
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health
+  endpoint:
+    health:
+      show-details: always
