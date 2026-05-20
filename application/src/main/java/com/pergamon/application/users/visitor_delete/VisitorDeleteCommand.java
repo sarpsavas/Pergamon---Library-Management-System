@@ -1,4 +1,4 @@
-package com.pergmaon.application.users.visitor_delete;
+package com.pergamon.application.users.visitor_delete;
 
 import java.util.UUID;
 

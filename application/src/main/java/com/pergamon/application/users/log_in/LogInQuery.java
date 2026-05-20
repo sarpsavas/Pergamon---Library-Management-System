@@ -1,4 +1,4 @@
-package com.pergmaon.application.users.log_in;
+package com.pergamon.application.users.log_in;
 
 import com.pergamon.core.enums.LogInOption;
 

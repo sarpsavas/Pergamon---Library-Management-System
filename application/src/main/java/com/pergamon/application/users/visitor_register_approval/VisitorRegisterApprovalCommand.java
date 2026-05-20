@@ -1,4 +1,4 @@
-package com.pergmaon.application.users.visitor_register_approval;
+package com.pergamon.application.users.visitor_register_approval;
 
 import java.util.UUID;
 

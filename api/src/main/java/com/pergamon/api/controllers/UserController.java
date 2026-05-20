@@ -27,15 +27,15 @@ import com.pergamon.application.users.admin_delete.DeleteAdminCommand;
 import com.pergamon.application.users.admin_register.AdminRegisterCommand;
 import com.pergamon.application.users.admin_search.AdminSearchQuery;
 import com.pergamon.application.users.admin_update.UpdateAdminCommand;
+import com.pergamon.application.users.log_in.LogInQuery;
 import com.pergamon.application.users.master_admin_register.MasterAdminRegisterCommand;
 import com.pergamon.application.users.teacher_register.TeacherRegisterCommand;
+import com.pergamon.application.users.visitor_delete.VisitorDeleteCommand;
 import com.pergamon.application.users.visitor_register.VisitorRegisterCommand;
+import com.pergamon.application.users.visitor_register_approval.VisitorRegisterApprovalCommand;
 import com.pergamon.application.users.visitor_register_request.VisitorRegisterRequestCommand;
 import com.pergamon.application.users.visitor_search.VisitorSearchQuery;
 import com.pergamon.core.responses.LogInResponse;
-import com.pergmaon.application.users.log_in.LogInQuery;
-import com.pergmaon.application.users.visitor_delete.VisitorDeleteCommand;
-import com.pergmaon.application.users.visitor_register_approval.VisitorRegisterApprovalCommand;
 
 @RestController
 @RequestMapping("/api/v1/user")

@@ -20,7 +20,7 @@ import com.pergamon.application.users.admin_register.AdminRegisterCommand;
 import com.pergamon.application.users.admin_search.AdminSearchQuery;
 
 @RestController
-@RequestMapping("/api/v1/transaction")
+@RequestMapping("/api/v1/feedback")
 public class FeedbackController 
 {
 	private final CommandGateway _cGateway;
