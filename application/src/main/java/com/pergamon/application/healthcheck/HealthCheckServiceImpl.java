@@ -1,21 +1,31 @@
 package com.pergamon.application.healthcheck;
 
+import java.sql.Connection;
+
 import org.springframework.boot.actuate.health.Health;
 import org.springframework.boot.actuate.health.HealthIndicator;
 import org.springframework.stereotype.Component;
 
 import com.pergamon.core.interfaces.IHealthCheckService;
+import javax.sql.DataSource;
 
 @Component
 public class HealthCheckServiceImpl implements HealthIndicator, IHealthCheckService{
 
+	private final DataSource dataSource;
+	
+	public HealthCheckServiceImpl(DataSource dataSource)
+	{
+		this.dataSource = dataSource;
+	}
+	
 	@Override
     public Health health() {
-        boolean isHealthy = checkCustomService(); 
+        boolean dbHealty = isDatabaseConnected(); 
         
-        if (!isHealthy) {
+        if (!dbHealty) {
             return Health.down()
-                    .withDetail("Error", "service null response")
+                    .withDetail("Error", "db not connect")
                     .build();
         }
         return Health.up()
@@ -23,8 +33,12 @@ public class HealthCheckServiceImpl implements HealthIndicator, IHealthCheckServ
                 .build();
     }
 
-    private boolean checkCustomService() {
-        
-        return true; 
+	private boolean isDatabaseConnected() {
+        try (Connection connection = dataSource.getConnection()) {
+            
+            return connection.isValid(2); // 2 saniye timeout
+        } catch (Exception e) {
+            return false;
+        }
     }
 }

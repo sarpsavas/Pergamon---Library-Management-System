@@ -6,7 +6,7 @@ spring:
     driver-class-name: oracle.jdbc.OracleDriver
 
 server:
-  port: 8080
+  port: 8000
 
 springdoc:
   swagger-ui:
