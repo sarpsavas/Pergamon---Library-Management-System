@@ -4,16 +4,16 @@ import org.axonframework.commandhandling.CommandHandler;
 import org.springframework.stereotype.Component;
 
 import com.pergamon.core.entites.Book;
-
+import com.pergamon.core.interfaces.IBookRepository;
 import com.pergamon.core.interfaces.IRepository;
 
 @Component
 public class CreateBookCommandHandler {
 	
-	private IRepository<Book> _repository;
+	private IBookRepository _repository;
 	
 	
-	public CreateBookCommandHandler(IRepository<Book> repository)
+	public CreateBookCommandHandler(IBookRepository repository)
 	{
 		_repository = repository;
 	}

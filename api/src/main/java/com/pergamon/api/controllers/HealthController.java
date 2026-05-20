@@ -12,26 +12,30 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
+import com.pergamon.application.healthcheck.HealthCheckServiceImpl;
 import com.pergamon.application.responses.AdminSearchResponse;
+import com.pergamon.application.responses.HealthCheckResponse;
 import com.pergamon.application.users.admin_search.AdminSearchQuery;
+import com.pergamon.core.interfaces.IHealthCheckService;
 
 @RestController
 @RequestMapping("/api/v1/health")
 public class HealthController {
 
-	private final HealthCheckService _service;
+	private final IHealthCheckService _service;
 	
-	public HealthController(HealthCheckService service)
+	public HealthController(IHealthCheckService service)
 	{
 		_service = service;
 	}
 	
 	@GetMapping("/health-check")  
-	public CompletableFuture<HealthResponse> HealthCheckAsync() 
+	public CompletableFuture<HealthCheckResponse> HealthCheckAsync() 
 	{
 		try { 
 			
-			return _
+			return CompletableFuture.completedFuture(new HealthCheckResponse(_service.health()));
+			
 		}
 		catch (Exception e) {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());

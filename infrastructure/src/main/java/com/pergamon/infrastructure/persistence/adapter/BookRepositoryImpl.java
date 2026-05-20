@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import com.pergamon.core.entites.Book;
 import com.pergamon.core.enums.BookType;
 import com.pergamon.core.interfaces.IBookRepository;
+import com.pergamon.core.interfaces.IRepository;
 import com.pergamon.infrastructure.persistence.repository.IBookDA;
 
 @Repository

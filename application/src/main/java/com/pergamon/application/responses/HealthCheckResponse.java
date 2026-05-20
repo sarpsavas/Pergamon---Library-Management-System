@@ -6,5 +6,8 @@ public class HealthCheckResponse
 {
 	public Health health;
 	
-	
+	public HealthCheckResponse(Health health)
+	{
+		this.health = health;
+	}
 }

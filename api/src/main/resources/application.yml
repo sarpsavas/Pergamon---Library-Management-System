@@ -15,7 +15,7 @@ springdoc:
 axon:
   axonserver:
     enabled: false
-	
+
 storage:
   location: /var/www/photostore/images/  
   
