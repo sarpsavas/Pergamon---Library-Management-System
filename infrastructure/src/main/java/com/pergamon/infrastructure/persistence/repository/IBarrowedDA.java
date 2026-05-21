@@ -18,6 +18,9 @@ public interface IBarrowedDA {
 	@SqlQuery()
 	List<Barrowed> GetBarrowedsByVisitorId(@Bind("Id") UUID id, @Define("organization_per_id") String organizationPerId);
 	
+	@SqlQuery()
+	List<Barrowed> GetBarroweds(@Define("organization_per_id") String organizationPerId);
+	
 	@SqlQuery
 	Barrowed GetBarrowedByBarrowedId(@Bind("Id") UUID id, @Define("organization_per_id") String organizationPerId);
 	

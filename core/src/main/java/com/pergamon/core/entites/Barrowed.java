@@ -16,6 +16,6 @@ public class Barrowed {
 	{
 		barrowedId = UUID.randomUUID();
 		barrStartTime = LocalDateTime.now();
-		barrEndTime = barrStartTime.plusDays(14);
+		
 	}
 }

@@ -8,17 +8,18 @@ import com.pergamon.core.entites.Transaction;
 import com.pergamon.core.enums.Availability;
 import com.pergamon.core.enums.Succes;
 import com.pergamon.core.enums.TransactionType;
+import com.pergamon.core.interfaces.IBookRepository;
 import com.pergamon.core.interfaces.IRepository;
 
 @Component
 public class BookUpdateCommandHandler {
 
-	private IRepository<Book> _repositoryBo;
+	private IBookRepository _boRepository;
 	private IRepository<Transaction> _repositoryTr;
 	
-	public BookUpdateCommandHandler(IRepository<Book> repositoryBo,IRepository<Transaction> repositoryTr)
+	public BookUpdateCommandHandler(IBookRepository boRepository,IRepository<Transaction> repositoryTr)
 	{
-		_repositoryBo = repositoryBo;
+		_boRepository = boRepository;
 		_repositoryTr = repositoryTr;
 	} 
 	
@@ -42,7 +43,7 @@ public class BookUpdateCommandHandler {
 			book.setPageNumber(request.pageNumber());
 			book.organizationPerId = request.organizationPerId();
 			
-			_repositoryBo.update(book);
+			_boRepository.update(book);
 			
 			transaction.succes = Succes.SUCCESSFUL;
 			_repositoryTr.add(transaction);

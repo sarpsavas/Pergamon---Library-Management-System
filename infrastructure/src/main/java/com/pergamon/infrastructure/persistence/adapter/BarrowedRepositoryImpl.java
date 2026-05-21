@@ -25,6 +25,11 @@ public class BarrowedRepositoryImpl implements IBarrowedRepository, IRepository<
 		return _jdbi.withExtension(IBarrowedDA.class, da -> da.GetBarrowedsByVisitorId(visitorId, organizationPerId));
 	}
 	
+	public List<Barrowed> GetBarroweds(String organizationPerId)
+	{
+		return _jdbi.withExtension(IBarrowedDA.class, da -> da.GetBarroweds(organizationPerId));
+	}
+	
 	public Barrowed GetBarrowedByBarrowedId(UUID barrowedId, String organizationPerId)
 	{
 		return _jdbi.withExtension(IBarrowedDA.class, da -> da.GetBarrowedByBarrowedId(barrowedId,organizationPerId));
