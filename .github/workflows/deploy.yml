@@ -7,6 +7,10 @@ on:
       - master
   workflow_dispatch:
 
+# Node.js deprecation uyarısını çözmek için ortam değişkeni
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
 jobs:
   build-and-push:
     runs-on: ubuntu-latest
@@ -21,7 +25,7 @@ jobs:
           distribution: 'temurin'
           cache: 'maven'
 
-      # Projeyi derliyoruz
+      # Projeyi derliyoruz (target klasörü burada oluşuyor)
       - name: Build with Maven
         run: mvn clean package -DskipTests
 
@@ -43,6 +47,9 @@ jobs:
           context: .
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/pergamon-backend:latest
+          # Hatanın çözümü: Dockerfile içindeki JAR_FILE argümanına yolu açıkça veriyoruz
+          build-args: |
+            JAR_FILE=target/*.jar
 
   deploy:
     needs: build-and-push
