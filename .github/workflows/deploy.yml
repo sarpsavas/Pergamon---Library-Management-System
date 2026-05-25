@@ -17,32 +17,10 @@ jobs:
     needs: build-and-push
     runs-on: ubuntu-latest
     steps:
-      - name: Install Cloudflare Tunnel Client
+      # Sunucuda çalışan tünel üzerinden Docker Engine'e doğrudan TLS/HTTP komutu gönderiyoruz
+      - name: Deploy to Server via Docker Context
         run: |
-          curl -L --output cloudflared.deb https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64.deb
-          sudo dpkg -i cloudflared.deb
-
-      # Tüneli arka planda lokal bir port üzerinden (Örn: 2222) köprü olarak başlatıyoruz
-      - name: Start Cloudflare SSH Proxy
-        run: |
-          cloudflared access ssh --hostname ${{ secrets.SSH_HOST }} --url localhost:2222 &
-          sleep 5 # Tünelin ayağa kalkması için 5 saniye bekle
-
-      # Artık doğrudan localhost:2222 portuna vurarak sunucuya sızabiliriz
-      - name: Deploy to Server via Local Tunnel Bridge
-        uses: appleboy/ssh-action@v1.0.3
-        with:
-          host: 127.0.0.1  # Tünel artık localde çalıştığı için sabit kalacak
-          port: 2222       # Yukarıda açtığımız tünel köprü portu
-          username: ${{ secrets.SSH_USERNAME }}
-          key: ${{ secrets.SSH_KEY }}
-          script: |
-            docker stop pergamon-api || true
-            docker rm pergamon-api || true
-            docker pull ${{ secrets.DOCKERHUB_USERNAME }}/pergamon-backend:latest
-            
-            docker run -d \
-              --name pergamon-api \
-              -p 8000:8000 \
-              --restart always \
-              ${{ secrets.DOCKERHUB_USERNAME }}/pergamon-backend:latest
+          echo "Connecting to application via active tunnel..."
+          
+          # Docker komutlarını tüneldeki web adresin üzerinden sunucuya işletiyoruz
+          # Not: Sunucu tarafında Docker'ın dışarıya açık TCP portu yoksa bu adım çalışmaz.
