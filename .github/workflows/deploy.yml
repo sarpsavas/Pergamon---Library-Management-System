@@ -2,25 +2,59 @@ name: Pergamon Backend CD
 
 on:
   push:
-    branches: [ "master", "main" ] # Hangi branch'e push atıldığında çalışmasını istiyorsan
+    branches: [ "master", "main" ] # master veya main branch'ine push atıldığında tetiklenir
 
 jobs:
   build-and-push:
-    # Docker build ve push adımların zaten burada var, oraya dokunma.
-    # Eğer burası yoksa direkt altındaki deploy adımıyla devam edebilirsin.
     runs-on: ubuntu-latest
     steps:
-      - name: Dummy Step (Kendi build adımlarını buraya koyabilirsin)
-        run: echo "Building..."
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Login to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }} # Docker Hub'dan aldığın Access Token veya şifren
+
+      - name: Build and Push Docker Image
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          file: ./Dockerfile # Eğer Dockerfile ana dizindeyse aynen kalsın
+          push: true
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/pergamon-backend:latest
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
 
   deploy:
-    needs: build-and-push
+    needs: build-and-push # Build işlemi başarıyla bitmeden deploy'a geçmez
     runs-on: ubuntu-latest
     steps:
-      # Sunucuda çalışan tünel üzerinden Docker Engine'e doğrudan TLS/HTTP komutu gönderiyoruz
-      - name: Deploy to Server via Docker Context
-        run: |
-          echo "Connecting to application via active tunnel..."
-          
-          # Docker komutlarını tüneldeki web adresin üzerinden sunucuya işletiyoruz
-          # Not: Sunucu tarafında Docker'ın dışarıya açık TCP portu yoksa bu adım çalışmaz.
+      - name: Deploy to Server via SSH
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.SSH_KEY }}
+          port: 3922
+          script: |
+            # 1. Mevcut çalışan eski konteyneri durdur ve sil
+            docker stop pergamon-api || true
+            docker rm pergamon-api || true
+            
+            # 2. Sunucunun hafızasında kalan eski 'latest' imajını zorla sil (Önbelleği temizler)
+            docker rmi -f ${{ secrets.DOCKERHUB_USERNAME }}/pergamon-backend:latest || true
+            
+            # 3. Docker Hub'dan az önce pushlanan en güncel imajı çek
+            docker pull ${{ secrets.DOCKERHUB_USERNAME }}/pergamon-backend:latest
+            
+            # 4. Yeni konteyneri güncel kodlarla ayağa kaldır
+            docker run -d \
+              --name pergamon-api \
+              -p 8000:8000 \
+              --restart always \
+              ${{ secrets.DOCKERHUB_USERNAME }}/pergamon-backend:latest
