@@ -14,7 +14,7 @@ jobs:
         run: echo "Building..."
 
   deploy:
-    needs: build-and-push # build-and-push bittikten sonra çalışması için
+    needs: build-and-push
     runs-on: ubuntu-latest
     steps:
       - name: Install Cloudflare Tunnel Client
@@ -22,14 +22,20 @@ jobs:
           curl -L --output cloudflared.deb https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64.deb
           sudo dpkg -i cloudflared.deb
 
-      - name: Deploy to Server via SSH Tunnel
+      # Tüneli arka planda lokal bir port üzerinden (Örn: 2222) köprü olarak başlatıyoruz
+      - name: Start Cloudflare SSH Proxy
+        run: |
+          cloudflared access ssh --hostname ${{ secrets.SSH_HOST }} --url localhost:2222 &
+          sleep 5 # Tünelin ayağa kalkması için 5 saniye bekle
+
+      # Artık doğrudan localhost:2222 portuna vurarak sunucuya sızabiliriz
+      - name: Deploy to Server via Local Tunnel Bridge
         uses: appleboy/ssh-action@v1.0.3
         with:
-          host: ${{ secrets.SSH_HOST }} # GitHub Secrets'a eklediğin ssh.domainin.com adresi
+          host: 127.0.0.1  # Tünel artık localde çalıştığı için sabit kalacak
+          port: 2222       # Yukarıda açtığımız tünel köprü portu
           username: ${{ secrets.SSH_USERNAME }}
           key: ${{ secrets.SSH_KEY }}
-          port: 3922
-          proxy_command: cloudflared access ssh --hostname %h
           script: |
             docker stop pergamon-api || true
             docker rm pergamon-api || true
