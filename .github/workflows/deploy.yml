@@ -1,0 +1,54 @@
+name: Pergamon CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main
+      - master
+  workflow_dispatch:
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      # Docker Hub Girişi
+      - name: Login to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      # İmajı Oluştur ve Gönder (Derleme işlemi Dockerfile içinde başlayacak)
+      - name: Build and Push Docker Image
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          push: true
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/pergamon-backend:latest
+
+  deploy:
+    needs: build-and-push
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to Server via SSH
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.SSH_KEY }}
+          script: |
+            docker stop pergamon-api || true
+            docker rm pergamon-api || true
+            docker pull ${{ secrets.DOCKERHUB_USERNAME }}/pergamon-backend:latest
+            
+            docker run -d \
+              --name pergamon-api \
+              -p 8000:8000 \
+              --restart always \
+              ${{ secrets.DOCKERHUB_USERNAME }}/pergamon-backend:latest
