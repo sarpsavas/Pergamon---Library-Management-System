@@ -39,6 +39,7 @@ jobs:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USERNAME }}
           key: ${{ secrets.SSH_KEY }}
+          port: 3922  # <--- SSH portunu buraya açıkça dikte ediyoruz
           script: |
             docker stop pergamon-api || true
             docker rm pergamon-api || true
