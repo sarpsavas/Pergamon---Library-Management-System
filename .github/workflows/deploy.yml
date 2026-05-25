@@ -1,4 +1,4 @@
-name: Pergamon Backend CD (Docker Over Cloudflare)
+name: Pergamon Backend CD (Watchtower)
 
 on:
   push:
@@ -29,31 +29,3 @@ jobs:
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/pergamon-backend:latest
           cache-from: type=gha
           cache-to: type=gha,mode=max
-
-  deploy:
-    needs: build-and-push
-    runs-on: ubuntu-latest
-    env:
-      # GitHub Actions'a komutları hangi sunucuya göndereceğini söylüyoruz
-      DOCKER_HOST: "tcp://docker-api.sarpsavas.com:443" 
-    steps:
-      - name: Deploy to Remote Docker via Cloudflare Tunnel
-        run: |
-          echo "Connecting to remote Docker Daemon via Cloudflare..."
-          
-          
-          docker stop pergamon-api || true
-          docker rm pergamon-api || true
-          
-          
-          docker rmi -f ${{ secrets.DOCKERHUB_USERNAME }}/pergamon-backend:latest || true
-          
-          
-          docker pull ${{ secrets.DOCKERHUB_USERNAME }}/pergamon-backend:latest
-          
-          
-          docker run -d \
-            --name pergamon-api \
-            -p 8000:8000 \
-            --restart always \
-            ${{ secrets.DOCKERHUB_USERNAME }}/pergamon-backend:latest
