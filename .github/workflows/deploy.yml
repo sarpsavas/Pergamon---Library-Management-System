@@ -7,9 +7,6 @@ on:
       - master
   workflow_dispatch:
 
-env:
-  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
-
 jobs:
   build-and-push:
     runs-on: ubuntu-latest
@@ -24,7 +21,7 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      # İmajı Oluştur ve Gönder (Derleme işlemi Dockerfile içinde başlayacak)
+      # İmajı Oluştur ve Gönder
       - name: Build and Push Docker Image
         uses: docker/build-push-action@v5
         with:
