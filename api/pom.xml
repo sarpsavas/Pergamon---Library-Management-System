@@ -13,66 +13,80 @@
   <artifactId>api</artifactId>
 
   <dependencies>
-  
-  <dependency>
-    <groupId>org.axonframework</groupId>
-    <artifactId>axon-spring-boot-starter</artifactId>
-    <version>4.9.1</version>
-    <exclusions>
-        <exclusion>
-            <groupId>org.axonframework</groupId>
-            <artifactId>axon-server-connector</artifactId>
-        </exclusion>
-    </exclusions>
-</dependency>
-
-<dependency>
-    <groupId>org.springframework.boot</groupId>
-    <artifactId>spring-boot-starter-actuator</artifactId>
-    <version>3.2.0</version>
-</dependency>
-    
     <dependency>
-    <groupId>org.springframework.boot</groupId>
-    <artifactId>spring-boot-starter-web</artifactId>
-    <version>3.2.0</version>
-</dependency>
+      <groupId>org.axonframework</groupId>
+      <artifactId>axon-spring-boot-starter</artifactId>
+      <version>4.9.1</version>
+      <exclusions>
+        <exclusion>
+          <groupId>org.axonframework</groupId>
+          <artifactId>axon-server-connector</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
 
-<dependency>
-    <groupId>org.springdoc</groupId>
-    <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
-    <version>2.3.0</version>
-</dependency>
-
-<dependency>
-        <groupId>com.pergamon</groupId> 
-        <artifactId>application</artifactId>
-        <version>0.0.1-SNAPSHOT</version>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-actuator</artifactId>
+      <version>3.2.0</version>
     </dependency>
     
     <dependency>
-    <groupId>com.pergamon</groupId>
-    <artifactId>infrastructure</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
-</dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-web</artifactId>
+      <version>3.2.0</version>
+    </dependency>
 
-<dependency>
-    <groupId>org.springframework.boot</groupId>
-    <artifactId>spring-boot-starter-jdbc</artifactId>
-</dependency>
-<dependency>
-    <groupId>com.oracle.database.jdbc</groupId>
-    <artifactId>ojdbc11</artifactId>
-    <version>23.3.0.23.09</version>
-</dependency>
+    <dependency>
+      <groupId>org.springdoc</groupId>
+      <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+      <version>2.3.0</version>
+    </dependency>
 
-<dependency>
-    <groupId>io.jsonwebtoken</groupId>
-    <artifactId>jjwt-api</artifactId>
-    <version>0.11.5</version>
-</dependency>
+    <dependency>
+      <groupId>com.pergamon</groupId> 
+      <artifactId>application</artifactId>
+      <version>0.0.1-SNAPSHOT</version>
+    </dependency>
     
+    <dependency>
+      <groupId>com.pergamon</groupId>
+      <artifactId>infrastructure</artifactId>
+      <version>0.0.1-SNAPSHOT</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-jdbc</artifactId>
+    </dependency>
     
+    <dependency>
+      <groupId>com.oracle.database.jdbc</groupId>
+      <artifactId>ojdbc11</artifactId>
+      <version>23.3.0.23.09</version>
+    </dependency>
+
+    <dependency>
+      <groupId>io.jsonwebtoken</groupId>
+      <artifactId>jjwt-api</artifactId>
+      <version>0.11.5</version>
+    </dependency>
   </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-maven-plugin</artifactId>
+        <executions>
+          <execution>
+            <goals>
+              <goal>repackage</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
 
 </project>

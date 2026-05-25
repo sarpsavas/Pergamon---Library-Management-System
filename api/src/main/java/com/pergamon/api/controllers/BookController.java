@@ -11,8 +11,15 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.server.ResponseStatusException;
 
+import com.pergamon.application.books.book_add.BookAddCommand;
+import com.pergamon.application.books.book_delete.BookDeleteCommand;
 import com.pergamon.application.books.book_search.BookSearchQuery;
+import com.pergamon.application.books.book_update.BookUpdateCommand;
+import com.pergamon.application.books.books_view.BooksViewQuery;
 import com.pergamon.application.responses.BookSearchResponse;
+import com.pergamon.application.responses.ViewBooksResponse;
+import com.pergamon.application.users.admin_delete.DeleteAdminCommand;
+import com.pergamon.application.users.admin_register.AdminRegisterCommand;
 import com.pergamon.core.interfaces.IUploadBookImageService;
 
 import io.jsonwebtoken.Claims;
@@ -56,6 +63,55 @@ public class BookController {
 			return _qGateway.query(request, 
 		        ResponseTypes.instanceOf(BookSearchResponse.class));
 		}
+		catch (Exception e) {
+			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
+		}
+	}
+	
+	@GetMapping("/view-books") 
+	public CompletableFuture<ViewBooksResponse> ViewBooksAsync(@RequestBody BooksViewQuery request) 
+	{
+		try 
+		{ 
+			return _qGateway.query(request, 
+		        ResponseTypes.instanceOf(ViewBooksResponse.class));
+		}
+		catch (Exception e) {
+			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
+		}
+	}
+	
+	@PostMapping("/add-book") 
+	public CompletableFuture<String> AddBook(@RequestBody BookAddCommand request) 
+	{
+		try {
+			
+			return _cGateway.sendAndWait(request);
+		} 
+		catch (Exception e) {
+			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
+		}
+	}
+	
+	@PatchMapping("/update-book") 
+	public CompletableFuture<String> updateBookAsync(@RequestBody BookUpdateCommand request) 
+	{
+		try {
+			
+			return _cGateway.sendAndWait(request);
+		} 
+		catch (Exception e) {
+			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
+		}
+	}
+	
+	@DeleteMapping("/book-delete") 
+	public CompletableFuture<String> deleteBook(@RequestBody BookDeleteCommand request) 
+	{
+		try {
+			
+			return _cGateway.sendAndWait(request);
+		} 
 		catch (Exception e) {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
 		}
