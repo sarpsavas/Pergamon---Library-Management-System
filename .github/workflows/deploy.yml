@@ -35,7 +35,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       # GitHub Actions'a komutları hangi sunucuya göndereceğini söylüyoruz
-      DOCKER_HOST: "tcp://docker-api.senindomainin.com:443" 
+      DOCKER_HOST: "tcp://docker-api.sarpsavas.com:443" 
     steps:
       - name: Deploy to Remote Docker via Cloudflare Tunnel
         run: |
