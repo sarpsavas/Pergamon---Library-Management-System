@@ -1,8 +1,8 @@
-name: Pergamon Backend CD
+name: Pergamon Backend CD (Docker Over Cloudflare)
 
 on:
   push:
-    branches: [ "master", "main" ] # master veya main branch'ine push atıldığında tetiklenir
+    branches: [ "master", "main" ]
 
 jobs:
   build-and-push:
@@ -18,43 +18,42 @@ jobs:
         uses: docker/login-action@v3
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }} # Docker Hub'dan aldığın Access Token veya şifren
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: Build and Push Docker Image
         uses: docker/build-push-action@v5
         with:
           context: .
-          file: ./Dockerfile # Eğer Dockerfile ana dizindeyse aynen kalsın
+          file: ./Dockerfile
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/pergamon-backend:latest
           cache-from: type=gha
           cache-to: type=gha,mode=max
 
   deploy:
-    needs: build-and-push # Build işlemi başarıyla bitmeden deploy'a geçmez
+    needs: build-and-push
     runs-on: ubuntu-latest
+    env:
+      # GitHub Actions'a komutları hangi sunucuya göndereceğini söylüyoruz
+      DOCKER_HOST: "tcp://docker-api.senindomainin.com:443" 
     steps:
-      - name: Deploy to Server via SSH
-        uses: appleboy/ssh-action@v1.0.3
-        with:
-          host: ${{ secrets.SSH_HOST }}
-          username: ${{ secrets.SSH_USERNAME }}
-          key: ${{ secrets.SSH_KEY }}
-          port: 3922
-          script: |
-            # 1. Mevcut çalışan eski konteyneri durdur ve sil
-            docker stop pergamon-api || true
-            docker rm pergamon-api || true
-            
-            # 2. Sunucunun hafızasında kalan eski 'latest' imajını zorla sil (Önbelleği temizler)
-            docker rmi -f ${{ secrets.DOCKERHUB_USERNAME }}/pergamon-backend:latest || true
-            
-            # 3. Docker Hub'dan az önce pushlanan en güncel imajı çek
-            docker pull ${{ secrets.DOCKERHUB_USERNAME }}/pergamon-backend:latest
-            
-            # 4. Yeni konteyneri güncel kodlarla ayağa kaldır
-            docker run -d \
-              --name pergamon-api \
-              -p 8000:8000 \
-              --restart always \
-              ${{ secrets.DOCKERHUB_USERNAME }}/pergamon-backend:latest
+      - name: Deploy to Remote Docker via Cloudflare Tunnel
+        run: |
+          echo "Connecting to remote Docker Daemon via Cloudflare..."
+          
+          
+          docker stop pergamon-api || true
+          docker rm pergamon-api || true
+          
+          
+          docker rmi -f ${{ secrets.DOCKERHUB_USERNAME }}/pergamon-backend:latest || true
+          
+          
+          docker pull ${{ secrets.DOCKERHUB_USERNAME }}/pergamon-backend:latest
+          
+          
+          docker run -d \
+            --name pergamon-api \
+            -p 8000:8000 \
+            --restart always \
+            ${{ secrets.DOCKERHUB_USERNAME }}/pergamon-backend:latest
