@@ -1,5 +1,20 @@
-deploy:
-    needs: build-and-push
+name: Pergamon Backend CD
+
+on:
+  push:
+    branches: [ "master", "main" ] # Hangi branch'e push atıldığında çalışmasını istiyorsan
+
+jobs:
+  build-and-push:
+    # Docker build ve push adımların zaten burada var, oraya dokunma.
+    # Eğer burası yoksa direkt altındaki deploy adımıyla devam edebilirsin.
+    runs-on: ubuntu-latest
+    steps:
+      - name: Dummy Step (Kendi build adımlarını buraya koyabilirsin)
+        run: echo "Building..."
+
+  deploy:
+    needs: build-and-push # build-and-push bittikten sonra çalışması için
     runs-on: ubuntu-latest
     steps:
       - name: Install Cloudflare Tunnel Client
@@ -10,7 +25,7 @@ deploy:
       - name: Deploy to Server via SSH Tunnel
         uses: appleboy/ssh-action@v1.0.3
         with:
-          host: ssh.domainin.com # 1. Adımda tanımladığın hostname
+          host: ${{ secrets.SSH_HOST }} # GitHub Secrets'a eklediğin ssh.domainin.com adresi
           username: ${{ secrets.SSH_USERNAME }}
           key: ${{ secrets.SSH_KEY }}
           port: 3922
