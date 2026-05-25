@@ -42,15 +42,5 @@ public class TransactionController {
 		}
 	}
 	
-	@GetMapping("/yoklama-endpointi")  
-	public CompletableFuture<ViewTransactionsResponse> deneme(@RequestBody ViewTransactionsQuery request) 
-	{
-		try { 
-			return _qGateway.query(request, 
-		        ResponseTypes.instanceOf(ViewTransactionsResponse.class));
-		}
-		catch (Exception e) {
-			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
-		}
-	}
+	
 }

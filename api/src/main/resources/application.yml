@@ -1,8 +1,8 @@
 spring:
   datasource:
-    url: jdbc:oracle:thin:@172.17.0.1:1521:FREE
-    username: system
-    password: quslivendus
+    url: jdbc:oracle:thin:@localhost:1521:FREE
+    username: XEPDB1
+    password: YeniSifren123
     driver-class-name: oracle.jdbc.OracleDriver
 
 server:
