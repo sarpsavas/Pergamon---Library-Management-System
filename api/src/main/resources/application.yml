@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:oracle:thin:@localhost:1521:FREE
+    url: jdbc:oracle:thin:@172.17.0.1:1521:xe
     username: sarp_admin
     password: Sifre123!
     driver-class-name: oracle.jdbc.OracleDriver
