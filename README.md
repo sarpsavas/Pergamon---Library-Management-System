@@ -2,7 +2,7 @@
 
 > Kütüphanelere dijital yönetim hizmeti sunan çok kiracılı platform.
 
-**Canlı:** [pergamon.sarpsavas.com](https://pergamon.sarpsavas.com) · [management-pergamon.sarpsavas.com](https://management-pergamon.sarpsavas.com)
+**Canlı:** [pergamon.sarpsavas.com](https://pergamon.sarpsavas.com) · [management-pergamon.sarpsavas.com](https://management-pergamon.sarpsavas.com)[Teknik aksaklıktan dolayı canlı kapanmıştır.]
 
 ---
 
@@ -255,7 +255,7 @@ Kullanıcı şifreleri veritabanında `passwordHash` alanında **hash'lenmiş** 
 ---
 
 ## 5. Frontend
-> 👤 **Sarp SAVAŞ**
+> 👤 **(AI)Sarp SAVAŞ**
 
 ### 5.1 Genel Yaklaşım
 
